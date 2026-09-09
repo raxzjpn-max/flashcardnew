@@ -742,6 +742,7 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
 .column-menu label{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;color:#17376f;font-size:14px;font-weight:700;cursor:pointer}
 .column-menu label:hover{background:#eef4ff}
 .column-menu input{flex:0 0 auto;min-width:0;width:17px;height:17px;accent-color:#2457d6}
+.column-warning{margin:7px 5px 2px;padding:8px 9px;border-radius:9px;background:#fff1f2;color:#bd2635;font-size:12px;font-weight:800;line-height:1.35}
 #vocabTable.hide-col-number [data-col="number"],#vocabTable.hide-col-kanji [data-col="kanji"],#vocabTable.hide-col-hiragana [data-col="hiragana"],#vocabTable.hide-col-meaning [data-col="meaning"],#vocabTable.hide-col-action [data-col="action"]{display:none}
 @media(max-width:640px){.column-picker{width:100%}.column-picker summary{width:100%;text-align:center}.column-menu{left:0;right:auto;width:100%}}
 .brand-strip{flex-wrap:nowrap !important;white-space:nowrap;overflow:hidden}
@@ -875,11 +876,11 @@ html,body{max-width:100%;overflow-x:hidden}
       <details class="column-picker" id="columnPicker">
         <summary>☷ Atur Kolom</summary>
         <div class="column-menu">
-          <label><input type="checkbox" data-toggle-col="number" checked> Nomor</label>
           <label><input type="checkbox" data-toggle-col="kanji" checked> Kanji</label>
           <label><input type="checkbox" data-toggle-col="hiragana" checked> Hiragana</label>
           <label><input type="checkbox" data-toggle-col="meaning" checked> Arti Indonesia</label>
           <label><input type="checkbox" data-toggle-col="action" checked> Aksi</label>
+          <div class="column-warning hidden" id="columnWarning" role="status" aria-live="polite">Wajib ada minimal 1 kolom yang ditampilkan.</div>
         </div>
       </details>
     </div>
@@ -1025,7 +1026,10 @@ let progressData = JSON.parse(localStorage.getItem("n4n3-2589-progress") || "{}"
 const COLUMN_PREFS_KEY="n4n3-table-columns";
 let savedColumnPrefs={};
 try{savedColumnPrefs=JSON.parse(localStorage.getItem(COLUMN_PREFS_KEY)||"{}")}catch(_){savedColumnPrefs={}}
-const tableColumns={number:true,kanji:true,hiragana:true,meaning:true,action:true,...savedColumnPrefs};
+const tableColumns={kanji:true,hiragana:true,meaning:true,action:true,...savedColumnPrefs};
+delete tableColumns.number;
+if(!Object.values(tableColumns).some(Boolean)) tableColumns.kanji=true;
+localStorage.setItem(COLUMN_PREFS_KEY,JSON.stringify(tableColumns));
 const GLOBAL_PROGRESS_KEY="__globalKnown";
 if(!progressData[GLOBAL_PROGRESS_KEY]){
   progressData[GLOBAL_PROGRESS_KEY]=[...new Set(Object.values(progressData).flat().filter(v=>typeof v==="string"))];
@@ -1207,6 +1211,7 @@ function renderTable(){
 
 function applyColumnVisibility(){
   const table=$("vocabTable");
+  table.classList.remove("hide-col-number");
   Object.entries(tableColumns).forEach(([column,visible])=>{
     table.classList.toggle(`hide-col-${column}`,!visible);
     const control=document.querySelector(`[data-toggle-col="${column}"]`);
@@ -1350,7 +1355,18 @@ $("onlyUnlearnedStudy").onclick=toggleUnmemorized;
 $("search").addEventListener("input",renderTable);
 document.querySelectorAll("[data-toggle-col]").forEach(control=>{
   control.addEventListener("change",()=>{
-    tableColumns[control.dataset.toggleCol]=control.checked;
+    const column=control.dataset.toggleCol;
+    tableColumns[column]=control.checked;
+    const warning=$("columnWarning");
+    if(!Object.values(tableColumns).some(Boolean)){
+      tableColumns[column]=true;
+      control.checked=true;
+      warning.classList.remove("hidden");
+      clearTimeout(window.columnWarningTimer);
+      window.columnWarningTimer=setTimeout(()=>warning.classList.add("hidden"),2800);
+      return;
+    }
+    warning.classList.add("hidden");
     localStorage.setItem(COLUMN_PREFS_KEY,JSON.stringify(tableColumns));
     applyColumnVisibility();
   });
