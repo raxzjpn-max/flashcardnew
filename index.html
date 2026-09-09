@@ -758,6 +758,39 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
 .grammar-check input{width:19px;height:19px;accent-color:#16845c}.grammar-card.understood{border-color:#a8dfc8 !important;background:#f2fbf7 !important}.grammar-card.understood .grammar-number{background:#dff6eb;color:#14845d}.grammar-card.understood .grammar-check{border-color:#a8dfc8;color:#14845d;background:#fff}
 @media(max-width:520px){.grammar-card.grammar-row{grid-template-columns:38px minmax(0,1fr);gap:10px}.grammar-number{width:34px;height:34px}.grammar-check{grid-column:2;width:max-content;padding:7px 9px}.grammar-summary .grammar-pattern{font-size:15px}}
 @media(max-width:640px){.brand-strip{padding:9px 11px !important}.brand-strip strong{font-size:clamp(10px,3.1vw,13px)}.brand-strip span{font-size:clamp(10px,3vw,13px);padding:5px 7px}#dashboard h1{white-space:nowrap !important;font-size:clamp(15px,5.15vw,33px) !important;letter-spacing:-.05em !important}}
+html,body{max-width:100%;overflow-x:hidden}
+#tableView{width:100%;min-width:0}
+#tableView .table-wrap{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+#vocabTable{width:100% !important;min-width:0 !important;table-layout:fixed}
+#vocabTable th,#vocabTable td{min-width:0 !important;padding:11px 9px;white-space:normal !important;overflow-wrap:anywhere;word-break:normal}
+#vocabTable [data-col="number"]{width:7%;text-align:center}
+#vocabTable [data-col="kanji"]{width:23%}
+#vocabTable [data-col="hiragana"]{width:23%}
+#vocabTable [data-col="meaning"]{width:32%}
+#vocabTable [data-col="action"]{width:15%;text-align:center}
+#vocabTable .td-kanji{white-space:nowrap !important;overflow:hidden;text-overflow:ellipsis;font-size:clamp(15px,2vw,20px)}
+#vocabTable .row-btn{max-width:100%;padding:8px 9px;white-space:nowrap}
+.scene{touch-action:pan-y;will-change:transform,opacity}
+.scene.dragging{transition:none !important;cursor:grabbing}
+.scene .card{will-change:transform}
+@media(max-width:640px){
+  #tableView .table-wrap{border-radius:15px !important}
+  #tableView .table-tools{padding:10px !important}
+  #vocabTable th,#vocabTable td{padding:9px 5px;font-size:12px;line-height:1.35}
+  #vocabTable th{font-size:11px}
+  #vocabTable [data-col="number"]{width:9%}
+  #vocabTable [data-col="kanji"]{width:22%}
+  #vocabTable [data-col="hiragana"]{width:23%}
+  #vocabTable [data-col="meaning"]{width:29%}
+  #vocabTable [data-col="action"]{width:17%}
+  #vocabTable .td-kanji{font-size:14px}
+  #vocabTable .row-btn{width:100%;padding:7px 3px;font-size:10px;border-radius:8px !important}
+}
+@media(max-width:390px){
+  #vocabTable th,#vocabTable td{padding:8px 4px;font-size:11px}
+  #vocabTable .td-kanji{font-size:13px}
+  #vocabTable .row-btn{font-size:9px}
+}
 </style>
 </head>
 <body>
@@ -791,7 +824,7 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
     <div class="material-card material-n3" id="openGrammarCombined">
       <div class="material-title">📖 GRAMMAR</div>
       <div class="material-desc">Pola grammar prioritas yang umum dipelajari untuk ujian JLPT N3.</div>
-      <div class="material-meta">155 pola N3 • progres tersimpan</div>
+      <div class="material-meta">Materi inti N3 • progres tersimpan</div>
     </div>
   </div>
 </section>
@@ -830,6 +863,7 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
     <div class="topright">
       <div class="stats"><b id="tableTitle"></b><br><span id="tableCount"></span></div>
       <button id="combinePrev">Gabungkan 1 Bagian Sebelumnya</button>
+      <button id="combineFromFirst">Gabungkan dari Flashcard 1</button>
       <button id="onlyUnlearned">○ Belum Hafal Saja</button>
       <button id="toReading">Mode Reading →</button>
       <button class="primary" id="toFlash">Mode Flashcard →</button>
@@ -875,6 +909,7 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
     <div class="topright">
       <div class="stats"><b id="studyTitle"></b><br><span id="counter"></span> • Hafal: <b id="known">0</b></div>
       <button id="combinePrevStudy">Gabungkan 1 Bagian Sebelumnya</button>
+      <button id="combineFromFirstStudy">Gabungkan dari Flashcard 1</button>
       <button id="onlyUnlearnedStudy">○ Belum Hafal Saja</button>
       <button id="toReadingStudy">Mode Reading →</button>
       <button id="toTable">Mode Tabel →</button>
@@ -980,6 +1015,7 @@ improveVocabularyExamples(allWords);
 const $ = id => document.getElementById(id);
 let activeDeckIndex = null; // null = keseluruhan
 let isCombinedMode = false;
+let isFromFirstMode = false;
 let currentDeck = allWords;
 let sourceDeck = allWords;
 let onlyUnmemorized = false;
@@ -1050,6 +1086,7 @@ function buildDashboard(){
 function selectDeck(i){
   activeDeckIndex=i;
   isCombinedMode=false;
+  isFromFirstMode=false;
   onlyUnmemorized=false;
   if(i===null){
     sourceDeck=allWords; currentKey="all";
@@ -1063,9 +1100,21 @@ function selectDeck(i){
 function selectCombined(i){
   activeDeckIndex=i;
   isCombinedMode=true;
+  isFromFirstMode=false;
   onlyUnmemorized=false;
   sourceDeck=sets.slice(Math.max(0,i-1),i+1).flat();
   currentKey=`pair${Math.max(0,i-1)}-${i}`;
+  applyDeckFilter();
+  updateCombineButtons();
+}
+
+function selectFromFirst(i){
+  activeDeckIndex=i;
+  isCombinedMode=true;
+  isFromFirstMode=true;
+  onlyUnmemorized=false;
+  sourceDeck=sets.slice(0,i+1).flat();
+  currentKey=`fromFirst0-${i}`;
   applyDeckFilter();
   updateCombineButtons();
 }
@@ -1100,6 +1149,7 @@ function toggleUnmemorized(){
 function deckName(){
   const filterLabel=onlyUnmemorized ? " • Belum Hafal" : "";
   if(activeDeckIndex===null) return `Keseluruhan Kosakata${filterLabel}`;
+  if(isCombinedMode && isFromFirstMode) return `Flashcard 1–${activeDeckIndex+1}${filterLabel}`;
   if(isCombinedMode) return `Flashcard ${activeDeckIndex} + ${activeDeckIndex+1}${filterLabel}`;
   return `Flashcard ${activeDeckIndex+1}${filterLabel}`;
 }
@@ -1108,11 +1158,16 @@ function updateCombineButtons(){
   const hide = activeDeckIndex===null || activeDeckIndex===0;
   $("combinePrev").classList.toggle("hidden", hide);
   $("combinePrevStudy").classList.toggle("hidden", hide);
+  $("combineFromFirst").classList.toggle("hidden", hide);
+  $("combineFromFirstStudy").classList.toggle("hidden", hide);
 
   if(!hide){
     const total = sets.slice(activeDeckIndex-1,activeDeckIndex+1).flat().length;
     $("combinePrev").textContent = `Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
     $("combinePrevStudy").textContent = `Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
+    const totalFromFirst=sets.slice(0,activeDeckIndex+1).flat().length;
+    $("combineFromFirst").textContent=`Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
+    $("combineFromFirstStudy").textContent=`Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
   }
 }
 
@@ -1200,7 +1255,46 @@ function showDashboard(){
   buildDashboard();
 }
 
-function next(){index=(index+1)%currentDeck.length;renderFlash()}
+let cardMoving=false;
+async function slideNavigate(direction,targetIndex=null){
+  if(cardMoving || !currentDeck.length) return;
+  const nextIndex=targetIndex===null
+    ? (index+direction+currentDeck.length)%currentDeck.length
+    : targetIndex;
+  if(nextIndex===index && currentDeck.length===1){renderFlash();return}
+  const scene=$("scene");
+  const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  cardMoving=true;
+  try{
+    if(!reduceMotion && scene.animate){
+      const outgoingAnimation=scene.animate(
+        [{transform:"translateX(0) rotate(0deg)",opacity:1},{transform:`translateX(${direction>0?"-112%":"112%"}) rotate(${direction>0?"-3deg":"3deg"})`,opacity:.12}],
+        {duration:190,easing:"cubic-bezier(.4,0,1,1)",fill:"forwards"}
+      );
+      await outgoingAnimation.finished;
+      // Lepaskan posisi akhir kartu lama sebelum kartu baru dirender.
+      outgoingAnimation.cancel();
+    }
+    index=nextIndex;
+    renderFlash();
+    if(!reduceMotion && scene.animate){
+      const incomingAnimation=scene.animate(
+        [{transform:`translateX(${direction>0?"112%":"-112%"}) rotate(${direction>0?"3deg":"-3deg"})`,opacity:.12},{transform:"translateX(0) rotate(0deg)",opacity:1}],
+        {duration:230,easing:"cubic-bezier(.16,1,.3,1)"}
+      );
+      await incomingAnimation.finished;
+      incomingAnimation.cancel();
+    }
+  }catch(_){index=nextIndex;renderFlash()}
+  finally{
+    scene.getAnimations?.().forEach(animation=>animation.cancel());
+    scene.style.transform="";
+    scene.style.opacity="";
+    cardMoving=false;
+  }
+}
+
+function next(){slideNavigate(1)}
 
 $("allDeck").onclick=()=>openTable(null);
 $("tableBack").onclick=showPreviousPage;
@@ -1234,6 +1328,22 @@ $("combinePrevStudy").onclick=()=>{
   renderFlash();
 };
 
+$("combineFromFirst").onclick=()=>{
+  if(activeDeckIndex===null || activeDeckIndex===0) return;
+  selectFromFirst(activeDeckIndex);
+  $("tableTitle").textContent=deckName();
+  $("search").value="";
+  renderTable();
+};
+
+$("combineFromFirstStudy").onclick=()=>{
+  if(activeDeckIndex===null || activeDeckIndex===0) return;
+  selectFromFirst(activeDeckIndex);
+  index=0;
+  $("studyTitle").textContent=deckName();
+  renderFlash();
+};
+
 $("onlyUnlearned").onclick=toggleUnmemorized;
 $("onlyUnlearnedStudy").onclick=toggleUnmemorized;
 
@@ -1245,10 +1355,38 @@ document.querySelectorAll("[data-toggle-col]").forEach(control=>{
     applyColumnVisibility();
   });
 });
-$("scene").onclick=()=>$("card").classList.toggle("flipped");
+const flashScene=$("scene");
+let dragStartX=0,dragDeltaX=0,dragActive=false;
+flashScene.addEventListener("pointerdown",e=>{
+  if(cardMoving || !currentDeck.length) return;
+  dragActive=true;dragStartX=e.clientX;dragDeltaX=0;
+  flashScene.classList.add("dragging");
+  flashScene.setPointerCapture?.(e.pointerId);
+});
+flashScene.addEventListener("pointermove",e=>{
+  if(!dragActive) return;
+  dragDeltaX=e.clientX-dragStartX;
+  const limited=Math.max(-160,Math.min(160,dragDeltaX));
+  flashScene.style.transform=`translateX(${limited}px) rotate(${limited/55}deg)`;
+  flashScene.style.opacity=String(Math.max(.55,1-Math.abs(limited)/360));
+});
+function finishCardDrag(e){
+  if(!dragActive) return;
+  dragActive=false;
+  flashScene.classList.remove("dragging");
+  flashScene.releasePointerCapture?.(e.pointerId);
+  const moved=Math.abs(dragDeltaX);
+  flashScene.style.transition="transform .2s ease,opacity .2s ease";
+  flashScene.style.transform="";flashScene.style.opacity="";
+  setTimeout(()=>flashScene.style.transition="",210);
+  if(moved>=55) slideNavigate(dragDeltaX<0?1:-1);
+  else if(moved<8) $("card").classList.toggle("flipped");
+}
+flashScene.addEventListener("pointerup",finishCardDrag);
+flashScene.addEventListener("pointercancel",finishCardDrag);
 $("next").onclick=next;
-$("prev").onclick=()=>{index=(index-1+currentDeck.length)%currentDeck.length;renderFlash()};
-$("shuffle").onclick=()=>{let n=index;while(currentDeck.length>1&&n===index)n=Math.floor(Math.random()*currentDeck.length);index=n;renderFlash()};
+$("prev").onclick=()=>slideNavigate(-1);
+$("shuffle").onclick=()=>{let n=index;while(currentDeck.length>1&&n===index)n=Math.floor(Math.random()*currentDeck.length);slideNavigate(1,n)};
 $("know").onclick=()=>{
   if(!currentDeck.length) return;
   let s=knownSet();
@@ -1264,8 +1402,8 @@ $("again").onclick=()=>{let s=knownSet();s.delete(currentDeck[index].k);saveKnow
 document.addEventListener("keydown",e=>{
   if(!$("study").classList.contains("hidden")){
     if(e.code==="Space"){e.preventDefault();$("card").classList.toggle("flipped")}
-    if(e.key==="ArrowRight")next();
-    if(e.key==="ArrowLeft")$("prev").click();
+    if(e.key==="ArrowRight"){e.preventDefault();next()}
+    if(e.key==="ArrowLeft"){e.preventDefault();$("prev").click()}
   }
 });
 
@@ -1549,16 +1687,63 @@ const grammarN3=[
 ];
 
 
+// Bentuk yang dicantumkan tersendiri pada susunan materi inti Shin Kanzen N3.
+// Penjelasan dibuat ringkas dan orisinal untuk aplikasi ini.
+const shinkanzenN3Additions=[
+  {p:"～間",m:"selama suatu keadaan atau kegiatan berlangsung"},
+  {p:"～てからでなければ",m:"jika belum melakukan ... terlebih dahulu, tidak bisa ..."},
+  {p:"～とおりだ／～とおりに",m:"sesuai / sebagaimana"},
+  {p:"～どおりだ／～どおりに",m:"sesuai dengan / menurut"},
+  {p:"～よっては",m:"bergantung pada; dalam beberapa kondisi"},
+  {p:"～ほどだ／～ほど",m:"sampai tingkat / sedemikian ..."},
+  {p:"～くらい…はない",m:"tidak ada yang se..."},
+  {p:"～くらいなら",m:"kalau harus ... lebih baik ..."},
+  {p:"～ためだ／～ために",m:"karena / disebabkan oleh"},
+  {p:"～による",m:"yang disebabkan oleh / berdasarkan"},
+  {p:"～ことから",m:"karena fakta bahwa; dilihat dari"},
+  {p:"～のだから",m:"karena memang ...; menegaskan alasan"},
+  {p:"～（の）なら",m:"jika memang / kalau mengenai ..."},
+  {p:"～ては／～では",m:"jika ... maka; apabila keadaan itu terjadi"},
+  {p:"～と言われている",m:"dikatakan bahwa / dikenal sebagai"},
+  {p:"～とか",m:"katanya / seperti ... dan sebagainya"},
+  {p:"～って",m:"katanya; penanda kutipan atau topik informal"},
+  {p:"～ことは～が",m:"memang ... tetapi ..."},
+  {p:"～てもらいたい／～てほしい",m:"ingin seseorang melakukan ..."},
+  {p:"～させてもらいたい／～させてほしい",m:"ingin diizinkan melakukan ..."},
+  {p:"～といい／～ばいい／～たらいい",m:"sebaiknya / akan baik jika ..."},
+  {p:"命令形",m:"bentuk perintah langsung"},
+  {p:"～な（禁止）",m:"jangan ...; bentuk larangan"},
+  {p:"～たらどうか",m:"bagaimana kalau ...; memberi saran"},
+  {p:"～こと（命令・規則）",m:"harus / jangan; perintah atau peraturan tertulis"},
+  {p:"～ことにしている",m:"telah menetapkan sebagai kebiasaan atau keputusan"},
+  {p:"～ようにしている",m:"berusaha membiasakan diri untuk ..."},
+  {p:"～（よ）うと思う",m:"bermaksud / berpikir akan ..."},
+  {p:"～つもりだ",m:"berniat / berencana ..."},
+  {p:"～ようになっている",m:"dirancang atau telah menjadi keadaan yang ..."},
+  {p:"～ばかり",m:"hanya / terus-menerus ..."},
+  {p:"～てばかりいる",m:"terus melakukan ... saja"},
+  {p:"～ばかりでなく",m:"tidak hanya ... tetapi juga ..."},
+  {p:"～ばかりだ",m:"terus semakin / hanya tinggal ..."},
+  {p:"～と…た／～たら…た",m:"ketika ... ternyata ..."},
+  {p:"～も…ば～も／～も…なら～も",m:"baik ... maupun ..."},
+  {p:"～ように／～ようにと",m:"agar / dengan harapan supaya ..."}
+];
+
 const GRAMMAR_PROGRESS_KEY="jlpt-n3-grammar-understood";
 let grammarUnderstood={};
 try{grammarUnderstood=JSON.parse(localStorage.getItem(GRAMMAR_PROGRESS_KEY)||"{}")}catch(_){grammarUnderstood={}}
 const grammarPriority=[
-  "～うちに","～おかげで","～せいで","～かわりに","～ことにする","～ことになる",
-  "～によって","～について","～に対して","～にとって","～わけです","～わけではない",
-  "～わけがない","～はずだ","～はずがない","～ようになります","～ようにする",
-  "～ばかり","～ところ","～たびに","～最中に","～途中で","～につれて",
-  "～にしたがって","～ば～ほど","～さえ","～こそ","～といっても","～ものの",
-  "～くせに","～からといって","～ために","～ような気がする"
+  "～うちに","～間","～間に","～てからでないと","～てからでなければ","～ところです",
+  "～とおりだ／～とおりに","～どおりだ／～どおりに","～によって","～よっては","～たびに","～ば～ほど","～ついでに",
+  "～ほどだ／～ほど","～くらい…はない","～くらいなら","～に限る","～に対して","～反面","～一方で","～というより","～かわりに",
+  "～ためだ／～ために","～による","～ことから","～おかげで","～せいで","～のだから",
+  "～（の）なら","～ては／～では","～さえ～ば","～たとえ～ても",
+  "～ということだ","～と言われている","～とか","～って","～わけがない","～とは限らない","～ないことはない","～ことは～が",
+  "～てもらいたい／～てほしい","～させてもらいたい／～させてほしい","～といい／～ばいい／～たらいい",
+  "命令形","～な（禁止）","～べきだ","～たらどうか","～こと（命令・規則）",
+  "～ことにします","～ことにしている","～ようにする","～ようにしている","～ようとします","～（よ）うと思う","～つもりだ",
+  "～について","～にとって","～として","～ように／～ようにと","～わけです","～わけにはいかない","～ないわけにはいかない",
+  "～ばかり","～てばかりいる","～ばかりでなく","～ばかりだ","～たばかり"
 ];
 const grammarPatternReadings={
   "～間に":"～あいだに","～に対して":"～にたいして","～に違いない":"～にちがいない",
@@ -1577,11 +1762,16 @@ const grammarPatternReadings={
   "～次第":"～しだい","～次第で":"～しだいで","～を問わず":"～をとわず",
   "～要するに":"～ようするに","～ざるを得ない":"～ざるをえない",
   "～ような気がする":"～ようなきがする","～次第に":"～しだいに"
+  ,"～間":"～あいだ","～と言われている":"～といわれている","命令形":"めいれいけい",
+  "～な（禁止）":"～な（きんし）","～こと（命令・規則）":"～こと（めいれい・きそく）",
+  "～（よ）うと思う":"～（よ）うとおもう"
 };
 
 function prioritizedN3Grammar(){
   const rank=new Map(grammarPriority.map((pattern,index)=>[pattern,index]));
-  return grammarN3.map((g,originalIndex)=>({...g,originalIndex}))
+  const merged=[...grammarN3,...shinkanzenN3Additions]
+    .filter((g,index,all)=>all.findIndex(item=>item.p===g.p)===index);
+  return merged.map((g,originalIndex)=>({...g,originalIndex}))
     .sort((a,b)=>(rank.get(a.p)??9999)-(rank.get(b.p)??9999)||a.originalIndex-b.originalIndex);
 }
 
