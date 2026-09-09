@@ -759,7 +759,9 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
 .grammar-check input{width:19px;height:19px;accent-color:#16845c}.grammar-card.understood{border-color:#a8dfc8 !important;background:#f2fbf7 !important}.grammar-card.understood .grammar-number{background:#dff6eb;color:#14845d}.grammar-card.understood .grammar-check{border-color:#a8dfc8;color:#14845d;background:#fff}
 @media(max-width:520px){.grammar-card.grammar-row{grid-template-columns:38px minmax(0,1fr);gap:10px}.grammar-number{width:34px;height:34px}.grammar-check{grid-column:2;width:max-content;padding:7px 9px}.grammar-summary .grammar-pattern{font-size:15px}}
 @media(max-width:640px){.brand-strip{padding:9px 11px !important}.brand-strip strong{font-size:clamp(10px,3.1vw,13px)}.brand-strip span{font-size:clamp(10px,3vw,13px);padding:5px 7px}#dashboard h1{white-space:nowrap !important;font-size:clamp(15px,5.15vw,33px) !important;letter-spacing:-.05em !important}}
-html,body{max-width:100%;overflow-x:hidden}
+html,body{max-width:100%;overflow-x:auto;overflow-y:auto}
+body{min-width:0}
+.app{width:min(100%,1180px);min-width:0}
 #tableView{width:100%;min-width:0}
 #tableView .table-wrap{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
 #vocabTable{width:100% !important;min-width:0 !important;table-layout:fixed}
@@ -792,6 +794,18 @@ html,body{max-width:100%;overflow-x:hidden}
   #vocabTable .td-kanji{font-size:13px}
   #vocabTable .row-btn{font-size:9px}
 }
+.topright button{position:relative;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.topright button:hover{transform:translateY(-2px);filter:saturate(1.08)}
+.topright button:active{transform:translateY(0) scale(.97)}
+#combinePrev,#combinePrevStudy{border-color:#b8c6ff !important;background:#eef1ff !important;color:#354bb8 !important}
+#combineFromFirst,#combineFromFirstStudy{border-color:#f3bdc4 !important;background:#fff0f2 !important;color:#be293a !important}
+#toReading,#toReadingStudy,#readingToTable{border-color:#9edfd9 !important;background:#eafaf8 !important;color:#137c74 !important}
+#onlyUnlearned,#onlyUnlearnedStudy{border-color:#f1d18b !important;background:#fff8e7 !important;color:#9a6400 !important}
+#combinePrev.is-active,#combinePrevStudy.is-active{border-color:#4b61cf !important;background:linear-gradient(135deg,#6077e7,#394db4) !important;color:#fff !important;box-shadow:0 8px 18px rgba(65,84,190,.25)}
+#combineFromFirst.is-active,#combineFromFirstStudy.is-active{border-color:#d63245 !important;background:linear-gradient(135deg,#ea5363,#bd2638) !important;color:#fff !important;box-shadow:0 8px 18px rgba(196,42,60,.24)}
+#onlyUnlearned.is-active,#onlyUnlearnedStudy.is-active{border-color:#d59312 !important;background:linear-gradient(135deg,#f1b22d,#cf8410) !important;color:#fff !important;box-shadow:0 8px 18px rgba(205,133,16,.23)}
+@media(max-width:640px){.topright button{min-height:42px}.topright button:hover{transform:none}}
+@media (min-resolution:1.5dppx){.topbar,.topright{flex-wrap:wrap}.table-tools{align-items:stretch}}
 </style>
 </head>
 <body>
@@ -1134,7 +1148,8 @@ function updateFilterButtons(){
   ["onlyUnlearned","onlyUnlearnedStudy"].forEach(id=>{
     const button=$(id);
     if(!button) return;
-    button.classList.toggle("primary",onlyUnmemorized);
+    button.classList.remove("primary");
+    button.classList.toggle("is-active",onlyUnmemorized);
     button.textContent=onlyUnmemorized ? "✓ Belum Hafal Saja" : "○ Belum Hafal Saja";
     button.setAttribute("aria-pressed",String(onlyUnmemorized));
   });
@@ -1165,13 +1180,26 @@ function updateCombineButtons(){
   $("combineFromFirst").classList.toggle("hidden", hide);
   $("combineFromFirstStudy").classList.toggle("hidden", hide);
 
+  const pairActive=isCombinedMode&&!isFromFirstMode;
+  const fromFirstActive=isCombinedMode&&isFromFirstMode;
+  ["combinePrev","combinePrevStudy"].forEach(id=>{
+    $(id).classList.toggle("is-active",pairActive);
+    $(id).setAttribute("aria-pressed",String(pairActive));
+  });
+  ["combineFromFirst","combineFromFirstStudy"].forEach(id=>{
+    $(id).classList.toggle("is-active",fromFirstActive);
+    $(id).setAttribute("aria-pressed",String(fromFirstActive));
+  });
+
   if(!hide){
     const total = sets.slice(activeDeckIndex-1,activeDeckIndex+1).flat().length;
-    $("combinePrev").textContent = `Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
-    $("combinePrevStudy").textContent = `Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
+    const pairLabel=`${pairActive?"✓ ":""}Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
+    $("combinePrev").textContent = pairLabel;
+    $("combinePrevStudy").textContent = pairLabel;
     const totalFromFirst=sets.slice(0,activeDeckIndex+1).flat().length;
-    $("combineFromFirst").textContent=`Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
-    $("combineFromFirstStudy").textContent=`Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
+    const firstLabel=`${fromFirstActive?"✓ ":""}Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
+    $("combineFromFirst").textContent=firstLabel;
+    $("combineFromFirstStudy").textContent=firstLabel;
   }
 }
 
@@ -1319,7 +1347,8 @@ $("toTable").onclick=()=>{
 };
 $("combinePrev").onclick=()=>{
   if(activeDeckIndex===null || activeDeckIndex===0) return;
-  selectCombined(activeDeckIndex);
+  if(isCombinedMode&&!isFromFirstMode) selectDeck(activeDeckIndex);
+  else selectCombined(activeDeckIndex);
   $("tableTitle").textContent=deckName();
   $("search").value="";
   renderTable();
@@ -1327,7 +1356,8 @@ $("combinePrev").onclick=()=>{
 
 $("combinePrevStudy").onclick=()=>{
   if(activeDeckIndex===null || activeDeckIndex===0) return;
-  selectCombined(activeDeckIndex);
+  if(isCombinedMode&&!isFromFirstMode) selectDeck(activeDeckIndex);
+  else selectCombined(activeDeckIndex);
   index=0;
   $("studyTitle").textContent=deckName();
   renderFlash();
@@ -1335,7 +1365,8 @@ $("combinePrevStudy").onclick=()=>{
 
 $("combineFromFirst").onclick=()=>{
   if(activeDeckIndex===null || activeDeckIndex===0) return;
-  selectFromFirst(activeDeckIndex);
+  if(isCombinedMode&&isFromFirstMode) selectDeck(activeDeckIndex);
+  else selectFromFirst(activeDeckIndex);
   $("tableTitle").textContent=deckName();
   $("search").value="";
   renderTable();
@@ -1343,7 +1374,8 @@ $("combineFromFirst").onclick=()=>{
 
 $("combineFromFirstStudy").onclick=()=>{
   if(activeDeckIndex===null || activeDeckIndex===0) return;
-  selectFromFirst(activeDeckIndex);
+  if(isCombinedMode&&isFromFirstMode) selectDeck(activeDeckIndex);
+  else selectFromFirst(activeDeckIndex);
   index=0;
   $("studyTitle").textContent=deckName();
   renderFlash();
