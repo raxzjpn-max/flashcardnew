@@ -851,7 +851,7 @@ body{min-width:0}
 .progress{border:1px solid #c4d3e8;background:#edf2f8 !important;box-shadow:inset 0 1px 3px rgba(16,47,104,.12)}
 .actions button,.nav button,.topright button{border-width:1.5px !important;font-weight:800}.good{border-width:2px !important}.bad{border-width:2px !important}
 .nav{grid-template-columns:repeat(3,minmax(0,1fr))}.next-group{border-color:#8ed3b7 !important;background:linear-gradient(135deg,#eafaf3,#d9f5e8) !important;color:#107451 !important;box-shadow:0 7px 16px rgba(22,132,92,.12)}.next-group:hover{border-color:#16845c !important;background:linear-gradient(135deg,#dff7ec,#c8efdd) !important}
-.topbar,.subpage-head{align-items:flex-start}.topright{flex-wrap:wrap;justify-content:flex-end}.topright .stats{align-self:center;min-width:150px}.topright button{min-height:44px}
+.topbar,.subpage-head{align-items:flex-start}.topright{flex-wrap:wrap;justify-content:flex-end}.topright .stats{align-self:center;min-width:150px}.topright button{min-height:52px;line-height:1.25}.ui-jp{display:block;font-size:1em;font-weight:900}.ui-sub{display:block;margin-top:3px;font-size:.72em;font-weight:650;opacity:.78}
 #vocabTable.shown-cols-4 th,#vocabTable.shown-cols-4 td{font-size:13px}
 #vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:15px;padding-top:13px;padding-bottom:13px}
 #vocabTable.shown-cols-2 th,#vocabTable.shown-cols-2 td{font-size:18px;padding-top:16px;padding-bottom:16px}
@@ -896,104 +896,104 @@ body{min-width:0}
 </div>
 
   <h1>JLPT N3 By RyzenMZKSHI <span class="flag-pair" role="img" aria-label="Bendera Jepang dan Indonesia"><img class="flag-icon" alt="Jepang" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23fff'/%3E%3Ccircle cx='450' cy='300' r='180' fill='%23bc002d'/%3E%3C/svg%3E"><img class="flag-icon" alt="Indonesia" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cpath fill='%23e70011' d='M0 0h900v300H0z'/%3E%3Cpath fill='%23fff' d='M0 300h900v300H0z'/%3E%3C/svg%3E"></span></h1>
-  <div class="sub">Pilih materi yang ingin dipelajari.</div>
+  <div class="sub"><span class="ui-jp">学習する教材を選んでください。</span><span class="ui-sub">がくしゅうする きょうざいを えらんでください。 • Pilih materi yang ingin dipelajari.</span></div>
 
   <div class="material-grid">
     <div class="material-card material-vocab" id="openVocabMenu">
-      <div class="material-title">📚 KOSAKATA</div>
-      <div class="material-desc">Tabel dan flashcard kosakata untuk persiapan JLPT N3.</div>
-      <div class="material-meta">2.589 kosakata • 104 bagian</div>
+      <div class="material-title">📚 語彙</div>
+      <div class="material-desc">ごい • Kosakata<br>JLPT N3の表とフラッシュカード • Tabel dan flashcard persiapan JLPT N3.</div>
+      <div class="material-meta">2,589語・104課（ご・か / 2.589 kosakata・104 bagian）</div>
     </div>
 
     <div class="material-card material-n3" id="openGrammarCombined">
-      <div class="material-title">📖 GRAMMAR</div>
-      <div class="material-desc">Pola grammar prioritas yang umum dipelajari untuk ujian JLPT N3.</div>
-      <div class="material-meta">Materi inti N3 • progres tersimpan</div>
+      <div class="material-title">📖 文法</div>
+      <div class="material-desc">ぶんぽう • Grammar<br>JLPT N3で優先して学ぶ文型 • Pola prioritas untuk JLPT N3.</div>
+      <div class="material-meta">N3重要教材・進捗保存（じゅうようきょうざい・しんちょくほぞん / materi inti・progres tersimpan）</div>
     </div>
   </div>
 </section>
 
 <section id="vocabMenu" class="hidden">
   <div class="subpage-head">
-    <button id="vocabMenuBack">← Kembali</button>
-    <div class="stats"><b>KOSAKATA</b><br>2.589 kosakata</div>
+    <button id="vocabMenuBack">← 戻る（もどる / Kembali）</button>
+    <div class="stats"><b>語彙（ごい）</b><br>2,589語 / 2.589 kosakata</div>
   </div>
   <div class="hero">
-    <h2>KOSAKATA</h2>
-    <p>104 bagian • maksimal 25 kosakata per bagian</p>
+    <h2>語彙（ごい / Kosakata）</h2>
+    <p>104課（か）• 1課最大25語 / 104 bagian • maksimal 25 kata</p>
   </div>
   <div class="full-card" id="allDeck">
-    <div><strong>📚 Keseluruhan Kosakata</strong><span>Lihat semua 2.589 kosakata dalam tabel</span></div>
-    <div class="badge">2589 kata</div>
+    <div><strong>📚 全語彙（ぜんごい / Semua kosakata）</strong><span>2,589語を表で見る / Lihat semua kosakata dalam tabel</span></div>
+    <div class="badge">2589語（ご / kata）</div>
   </div>
-  <div class="section-title"><b>Belajar per bagian</b></div>
+  <div class="section-title"><b>課ごとに学ぶ（かごとに まなぶ / Belajar per bagian）</b></div>
   <div class="grid" id="deckGrid"></div>
 </section>
 
 
 <section id="grammarGroupMenu" class="hidden">
   <div class="subpage-head">
-    <button id="grammarGroupBack">← Kembali</button>
-    <div class="stats"><b>GRAMMAR</b><br><span id="grammarGroupSummary"></span></div>
+    <button id="grammarGroupBack">← 戻る（もどる / Kembali）</button>
+    <div class="stats"><b>文法（ぶんぽう / Grammar）</b><br><span id="grammarGroupSummary"></span></div>
   </div>
   <div class="hero">
-    <h2>GRAMMAR JLPT N3</h2>
-    <p>Setiap kelompok berisi maksimal 10 pola grammar.</p>
+    <h2>JLPT N3 文法（ぶんぽう / Grammar）</h2>
+    <p>各グループは最大10文型 • Setiap kelompok maksimal 10 pola.</p>
   </div>
   <div class="grid" id="grammarGroupGrid"></div>
 </section>
 
 <section id="grammarCombinedView" class="hidden">
   <div class="subpage-head">
-    <button id="grammarCombinedBack">← Kembali</button>
+    <button id="grammarCombinedBack">← 戻る（もどる / Kembali）</button>
     <div class="topright">
       <div class="stats"><b id="grammarCombinedTitle">GRAMMAR</b><br><span id="grammarCombinedCount"></span></div>
-      <button id="grammarCombinePrev">Gabungkan 1 Kelompok Sebelumnya</button>
-      <button id="grammarCombineFirst">Gabungkan dari Grammar 1</button>
-      <button id="grammarOnlyUnlearned">○ Belum Paham Saja</button>
-      <button class="primary" id="grammarToFlash">Mode Flashcard →</button>
+      <button id="grammarCombinePrev">前の組と結合（まえのくみ / Gabungkan sebelumnya）</button>
+      <button id="grammarCombineFirst">最初から結合（さいしょ / Gabungkan dari awal）</button>
+      <button id="grammarOnlyUnlearned">○ 未理解のみ（みりかい / Belum paham）</button>
+      <button class="primary" id="grammarToFlash"><span class="ui-jp">暗記カード →</span><span class="ui-sub">あんきカード / Mode Flashcard</span></button>
     </div>
   </div>
-  <input class="grammar-search" id="grammarCombinedSearch" placeholder="Cari pola grammar atau arti...">
+  <input class="grammar-search" id="grammarCombinedSearch" placeholder="文型・意味を検索（ぶんけい・いみをけんさく）/ Cari grammar atau arti...">
   <div class="grammar-list" id="grammarCombinedList"></div>
 </section>
 
 <section id="grammarStudy" class="hidden">
   <div class="topbar">
-    <button id="grammarStudyBack">← Kembali</button>
+    <button id="grammarStudyBack">← 戻る（もどる / Kembali）</button>
     <div class="topright">
-      <div class="stats"><b>FLASHCARD GRAMMAR</b><br><span id="grammarCounter"></span> • Paham: <b id="grammarKnown">0</b></div>
-      <button id="grammarCombinePrevStudy">Gabungkan 1 Kelompok Sebelumnya</button>
-      <button id="grammarCombineFirstStudy">Gabungkan dari Grammar 1</button>
-      <button id="grammarOnlyUnlearnedStudy">○ Belum Paham Saja</button>
-      <button class="next-group" id="grammarNextGroup">Group Selanjutnya ⇥</button>
-      <button id="grammarToList">Mode Daftar →</button>
+      <div class="stats"><b>文法暗記カード（ぶんぽうあんき / Flashcard Grammar）</b><br><span id="grammarCounter"></span> • 理解済み / Paham: <b id="grammarKnown">0</b></div>
+      <button id="grammarCombinePrevStudy">前の組と結合（まえのくみ / Gabungkan sebelumnya）</button>
+      <button id="grammarCombineFirstStudy">最初から結合（さいしょ / Gabungkan dari awal）</button>
+      <button id="grammarOnlyUnlearnedStudy">○ 未理解のみ（みりかい / Belum paham）</button>
+      <button class="next-group" id="grammarNextGroup">次の組（つぎのくみ / Group selanjutnya）⇥</button>
+      <button id="grammarToList">一覧（いちらん / Daftar）→</button>
     </div>
   </div>
   <div class="progress"><div id="grammarBar"></div></div>
   <div class="scene" id="grammarScene">
     <div class="card" id="grammarCard">
       <section class="face front">
-        <div class="label">Apa arti pola grammar ini?</div>
+        <div class="label">この文型の意味は？<br><small>このぶんけいの いみは？ / Apa arti pola ini?</small></div>
         <div class="grammar-flash-pattern" id="grammarPattern"></div>
-        <div class="hint">Ketuk kartu untuk melihat arti</div>
+        <div class="hint">カードをタップ • Ketuk untuk melihat arti</div>
       </section>
       <section class="face back">
-        <div class="label">Arti</div>
+        <div class="label">意味（いみ / Arti）</div>
         <div class="grammar-flash-reading" id="grammarPatternReading"></div>
         <div class="grammar-flash-meaning" id="grammarMeaning"></div>
-        <div class="hint">Ketuk lagi untuk melihat pola</div>
+        <div class="hint">もう一度タップ（もういちど / Ketuk lagi）</div>
       </section>
     </div>
   </div>
   <div class="actions">
-    <button class="bad" id="grammarAgain">✕ Belum paham</button>
-    <button class="good" id="grammarKnow">✓ Sudah paham</button>
+    <button class="bad" id="grammarAgain">✕ 未理解（みりかい / Belum paham）</button>
+    <button class="good" id="grammarKnow">✓ 理解済み（りかいずみ / Sudah paham）</button>
   </div>
   <div class="nav">
-    <button id="grammarPrev">← Sebelumnya</button>
-    <button class="primary" id="grammarShuffle">⤨ Acak</button>
-    <button id="grammarNext">Berikutnya →</button>
+    <button id="grammarPrev">← 前（まえ / Sebelumnya）</button>
+    <button class="primary" id="grammarShuffle">⤨ ランダム（Acak）</button>
+    <button id="grammarNext">次（つぎ / Berikutnya）→</button>
   </div>
   <div class="footer">Ketuk/Space untuk membalik • Geser atau gunakan tombol panah untuk berpindah.</div>
 </section>
@@ -1001,26 +1001,26 @@ body{min-width:0}
 
 <section id="tableView" class="hidden">
   <div class="topbar">
-    <button id="tableBack">← Kembali</button>
+    <button id="tableBack">← 戻る（もどる / Kembali）</button>
     <div class="topright">
       <div class="stats"><b id="tableTitle"></b><br><span id="tableCount"></span></div>
-      <button id="combinePrev">Gabungkan 1 Bagian Sebelumnya</button>
-      <button id="combineFromFirst">Gabungkan dari Flashcard 1</button>
-      <button id="onlyUnlearned">○ Belum Hafal Saja</button>
-      <button id="toReading">Mode Reading →</button>
-      <button class="primary" id="toFlash">Mode Flashcard →</button>
+      <button id="combinePrev">前の課と結合（まえのか / Gabungkan sebelumnya）</button>
+      <button id="combineFromFirst">最初から結合（さいしょ / Gabungkan dari awal）</button>
+      <button id="onlyUnlearned">○ 未暗記のみ（みあんき / Belum hafal）</button>
+      <button id="toReading">読解（どっかい / Reading）→</button>
+      <button class="primary" id="toFlash">暗記カード（あんきカード / Flashcard）→</button>
     </div>
   </div>
   <div class="table-wrap">
     <div class="table-tools">
-      <input id="search" type="search" placeholder="Cari kanji, hiragana, atau arti...">
+      <input id="search" type="search" placeholder="漢字・ひらがな・意味を検索 / Cari kanji, hiragana, atau arti...">
       <details class="column-picker" id="columnPicker">
         <summary>☷ Atur Kolom</summary>
         <div class="column-menu">
-          <label><input type="checkbox" data-toggle-col="kanji" checked> Kanji</label>
-          <label><input type="checkbox" data-toggle-col="hiragana" checked> Hiragana</label>
-          <label><input type="checkbox" data-toggle-col="meaning" checked> Arti Indonesia</label>
-          <label><input type="checkbox" data-toggle-col="action" checked> Aksi</label>
+          <label><input type="checkbox" data-toggle-col="kanji" checked> 漢字（かんじ / Kanji）</label>
+          <label><input type="checkbox" data-toggle-col="hiragana" checked> 平仮名（ひらがな）</label>
+          <label><input type="checkbox" data-toggle-col="meaning" checked> 意味（いみ / Arti）</label>
+          <label><input type="checkbox" data-toggle-col="action" checked> 操作（そうさ / Aksi）</label>
           <div class="column-warning hidden" id="columnWarning" role="status" aria-live="polite">Wajib ada minimal 1 kolom yang ditampilkan.</div>
         </div>
       </details>
@@ -1035,11 +1035,11 @@ body{min-width:0}
 
 <section id="readingView" class="hidden">
   <div class="topbar">
-    <button id="readingBack">← Kembali</button>
+    <button id="readingBack">← 戻る（もどる / Kembali）</button>
     <div class="topright">
       <div class="stats"><b id="readingTitle"></b><br><span id="readingCount"></span></div>
-      <button id="readingToTable">Mode Tabel →</button>
-      <button class="primary" id="readingToFlash">Mode Flashcard →</button>
+      <button id="readingToTable">表（ひょう / Tabel）→</button>
+      <button class="primary" id="readingToFlash">暗記カード（あんき / Flashcard）→</button>
     </div>
   </div>
   <div class="reading-list" id="readingList"></div>
@@ -1047,43 +1047,43 @@ body{min-width:0}
 
 <section id="study" class="hidden">
   <div class="topbar">
-    <button id="studyBack">← Kembali</button>
+    <button id="studyBack">← 戻る（もどる / Kembali）</button>
     <div class="topright">
-      <div class="stats"><b id="studyTitle"></b><br><span id="counter"></span> • Hafal: <b id="known">0</b></div>
-      <button id="combinePrevStudy">Gabungkan 1 Bagian Sebelumnya</button>
-      <button id="combineFromFirstStudy">Gabungkan dari Flashcard 1</button>
-      <button id="onlyUnlearnedStudy">○ Belum Hafal Saja</button>
-      <button class="next-group" id="nextGroupStudy">Group Selanjutnya ⇥</button>
-      <button id="toReadingStudy">Mode Reading →</button>
-      <button id="toTable">Mode Tabel →</button>
+      <div class="stats"><b id="studyTitle"></b><br><span id="counter"></span> • 暗記済み（あんきずみ / Hafal）: <b id="known">0</b></div>
+      <button id="combinePrevStudy">前の課と結合（まえのか / Gabungkan sebelumnya）</button>
+      <button id="combineFromFirstStudy">最初から結合（さいしょ / Gabungkan dari awal）</button>
+      <button id="onlyUnlearnedStudy">○ 未暗記のみ（みあんき / Belum hafal）</button>
+      <button class="next-group" id="nextGroupStudy">次の課（つぎのか / Group selanjutnya）⇥</button>
+      <button id="toReadingStudy">読解（どっかい / Reading）→</button>
+      <button id="toTable">表（ひょう / Tabel）→</button>
     </div>
   </div>
   <div class="progress"><div id="bar"></div></div>
   <div class="scene" id="scene">
     <div class="card" id="card">
       <section class="face front">
-        <div class="label">Apa arti kosakata ini?</div>
+        <div class="label">この語彙の意味は？<br><small>このごいの いみは？ / Apa arti kosakata ini?</small></div>
         <div class="kanji" id="kanji"></div>
-        <div class="hint">Ketuk kartu untuk melihat jawaban</div>
+        <div class="hint">カードをタップ • Ketuk untuk melihat jawaban</div>
       </section>
       <section class="face back">
-        <div class="label">Jawaban</div>
+        <div class="label">答え（こたえ / Jawaban）</div>
         <div class="hira" id="hira"></div>
         <div class="meaning" id="meaning"></div>
-        <div class="hint">Ketuk lagi untuk kembali</div>
+        <div class="hint">もう一度タップ（もういちど / Ketuk lagi）</div>
       </section>
     </div>
   </div>
   <div class="actions">
-    <button class="bad" id="again">✕ Belum hafal</button>
-    <button class="good" id="know">✓ Sudah hafal</button>
+    <button class="bad" id="again">✕ 未暗記（みあんき / Belum hafal）</button>
+    <button class="good" id="know">✓ 暗記済み（あんきずみ / Sudah hafal）</button>
   </div>
   <div class="nav">
-    <button id="prev">← Sebelumnya</button>
-    <button class="primary" id="shuffle">⤨ Acak</button>
-    <button id="next">Berikutnya →</button>
+    <button id="prev">← 前（まえ / Sebelumnya）</button>
+    <button class="primary" id="shuffle">⤨ ランダム（Acak）</button>
+    <button id="next">次（つぎ / Berikutnya）→</button>
   </div>
-  <div class="footer">Progress hafalan tersimpan otomatis di browser.</div>
+  <div class="footer">暗記進捗は自動保存されます（あんきしんちょく / Progres tersimpan otomatis）</div>
 </section>
 
 </main>
@@ -1245,7 +1245,7 @@ function buildDashboard(){
     const done=progressCount("set"+i);
     const el=document.createElement("div");
     el.className="deck";
-    el.innerHTML=`<strong>Flashcard ${i+1}</strong><span>${group.length} kosakata • Hafal ${done}/${group.length}</span><div class="mini"><div style="width:${(done/group.length)*100}%"></div></div>`;
+    el.innerHTML=`<strong>暗記カード ${i+1}（あんき / Flashcard）</strong><span>${group.length}語（ご / kata）• 暗記 ${done}/${group.length}</span><div class="mini"><div style="width:${(done/group.length)*100}%"></div></div>`;
     el.onclick=()=>openTable(i);
     grid.appendChild(el);
   });
@@ -1302,7 +1302,7 @@ function updateFilterButtons(){
     if(!button) return;
     button.classList.remove("primary");
     button.classList.toggle("is-active",onlyUnmemorized);
-    button.textContent=onlyUnmemorized ? "✓ Belum Hafal Saja" : "○ Belum Hafal Saja";
+    button.textContent=onlyUnmemorized ? "✓ 未暗記のみ（みあんき / Belum Hafal）" : "○ 未暗記のみ（みあんき / Belum Hafal）";
     button.setAttribute("aria-pressed",String(onlyUnmemorized));
   });
 }
@@ -1318,11 +1318,11 @@ function toggleUnmemorized(){
 }
 
 function deckName(){
-  const filterLabel=onlyUnmemorized ? " • Belum Hafal" : "";
-  if(activeDeckIndex===null) return `Keseluruhan Kosakata${filterLabel}`;
-  if(isCombinedMode && isFromFirstMode) return `Flashcard 1–${activeDeckIndex+1}${filterLabel}`;
-  if(isCombinedMode) return `Flashcard ${activeDeckIndex} + ${activeDeckIndex+1}${filterLabel}`;
-  return `Flashcard ${activeDeckIndex+1}${filterLabel}`;
+  const filterLabel=onlyUnmemorized ? " • 未暗記（みあんき / Belum Hafal）" : "";
+  if(activeDeckIndex===null) return `全語彙（ぜんごい / Semua kosakata）${filterLabel}`;
+  if(isCombinedMode && isFromFirstMode) return `暗記カード 1–${activeDeckIndex+1}${filterLabel}`;
+  if(isCombinedMode) return `暗記カード ${activeDeckIndex} + ${activeDeckIndex+1}${filterLabel}`;
+  return `暗記カード ${activeDeckIndex+1}${filterLabel}`;
 }
 
 function updateCombineButtons(){
@@ -1333,7 +1333,7 @@ function updateCombineButtons(){
   $("combineFromFirstStudy").classList.toggle("hidden", hide);
   const hasNextGroup=activeDeckIndex!==null&&activeDeckIndex<sets.length-1;
   $("nextGroupStudy").classList.toggle("hidden",!hasNextGroup);
-  if(hasNextGroup) $("nextGroupStudy").textContent=`Flashcard ${activeDeckIndex+2} Selanjutnya ⇥`;
+  if(hasNextGroup) $("nextGroupStudy").textContent=`次の暗記カード ${activeDeckIndex+2}（つぎ / Group selanjutnya）⇥`;
 
   const pairActive=isCombinedMode&&!isFromFirstMode;
   const fromFirstActive=isCombinedMode&&isFromFirstMode;
@@ -1348,11 +1348,11 @@ function updateCombineButtons(){
 
   if(!hide){
     const total = sets.slice(activeDeckIndex-1,activeDeckIndex+1).flat().length;
-    const pairLabel=`${pairActive?"✓ ":""}Gabungkan Bagian ${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
+    const pairLabel=`${pairActive?"✓ ":""}課を結合（かをけつごう / Gabungkan）${activeDeckIndex} + ${activeDeckIndex+1} (${total})`;
     $("combinePrev").textContent = pairLabel;
     $("combinePrevStudy").textContent = pairLabel;
     const totalFromFirst=sets.slice(0,activeDeckIndex+1).flat().length;
-    const firstLabel=`${fromFirstActive?"✓ ":""}Dari Flashcard 1–${activeDeckIndex+1} (${totalFromFirst})`;
+    const firstLabel=`${fromFirstActive?"✓ ":""}最初から結合（さいしょ / Dari awal）1–${activeDeckIndex+1} (${totalFromFirst})`;
     $("combineFromFirst").textContent=firstLabel;
     $("combineFromFirstStudy").textContent=firstLabel;
   }
@@ -1379,7 +1379,7 @@ function renderTable(){
     v.m.toLowerCase().includes(q)
   );
 
-  $("tableHead").innerHTML=`<tr><th data-col="number">No.</th><th data-col="kanji">Kanji</th><th data-col="hiragana">Hiragana</th><th data-col="meaning">Arti Indonesia</th><th data-col="action">Aksi</th></tr>`;
+  $("tableHead").innerHTML=`<tr><th data-col="number">番号<br><small>ばんごう / No.</small></th><th data-col="kanji">漢字<br><small>かんじ / Kanji</small></th><th data-col="hiragana">平仮名<br><small>ひらがな</small></th><th data-col="meaning">意味<br><small>いみ / Arti</small></th><th data-col="action">操作<br><small>そうさ / Aksi</small></th></tr>`;
 
   const tb=$("tbody"); tb.innerHTML="";
   rows.forEach(({v,localIndex},i)=>{
@@ -2012,7 +2012,7 @@ function renderGrammarGroups(){
     card.className="deck";
     card.setAttribute("role","button");
     card.tabIndex=0;
-    card.innerHTML=`<strong>Grammar ${index+1}</strong><span>${group.length} pola • Paham ${understood}/${group.length}</span><div class="mini"><div style="width:${group.length?(understood/group.length)*100:0}%"></div></div>`;
+    card.innerHTML=`<strong>文法 ${index+1}（ぶんぽう / Grammar）</strong><span>${group.length} 文型（ぶんけい / pola）• 理解 ${understood}/${group.length}</span><div class="mini"><div style="width:${group.length?(understood/group.length)*100:0}%"></div></div>`;
     const open=()=>openGrammarGroup(index);
     card.onclick=open;
     card.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}};
@@ -2037,7 +2037,7 @@ function openGrammarGroup(groupIndex){
 }
 
 function grammarSelectionName(){
-  const suffix=grammarOnlyUnlearned?" • Belum Paham":"";
+  const suffix=grammarOnlyUnlearned?" • 未理解（みりかい / Belum Paham）":"";
   if(grammarCombinedMode&&grammarFromFirstMode) return `GRAMMAR 1–${activeGrammarGroup+1}${suffix}`;
   if(grammarCombinedMode) return `GRAMMAR ${activeGrammarGroup} + ${activeGrammarGroup+1}${suffix}`;
   return `GRAMMAR ${activeGrammarGroup+1}${suffix}`;
@@ -2063,21 +2063,21 @@ function updateGrammarControls(){
   ["grammarCombinePrev","grammarCombinePrevStudy"].forEach(id=>{
     const button=$(id);if(!button)return;
     button.classList.toggle("is-active",pairActive);
-    button.textContent=`${pairActive?"✓ ":""}Gabungkan Grammar ${activeGrammarGroup} + ${activeGrammarGroup+1}`;
+    button.textContent=`${pairActive?"✓ ":""}文法を結合（ぶんぽうをけつごう / Gabungkan）${activeGrammarGroup} + ${activeGrammarGroup+1}`;
   });
   ["grammarCombineFirst","grammarCombineFirstStudy"].forEach(id=>{
     const button=$(id);if(!button)return;
     button.classList.toggle("is-active",firstActive);
-    button.textContent=`${firstActive?"✓ ":""}Dari Grammar 1–${activeGrammarGroup+1}`;
+    button.textContent=`${firstActive?"✓ ":""}最初から結合（さいしょ / Dari awal）1–${activeGrammarGroup+1}`;
   });
   ["grammarOnlyUnlearned","grammarOnlyUnlearnedStudy"].forEach(id=>{
     const button=$(id);if(!button)return;
     button.classList.toggle("is-active",grammarOnlyUnlearned);
-    button.textContent=grammarOnlyUnlearned?"✓ Belum Paham Saja":"○ Belum Paham Saja";
+    button.textContent=grammarOnlyUnlearned?"✓ 未理解のみ（みりかい / Belum Paham）":"○ 未理解のみ（みりかい / Belum Paham）";
   });
   const hasNextGroup=activeGrammarGroup<groupedGrammar().length-1;
   $("grammarNextGroup").classList.toggle("hidden",!hasNextGroup);
-  if(hasNextGroup) $("grammarNextGroup").textContent=`Grammar ${activeGrammarGroup+2} Selanjutnya ⇥`;
+  if(hasNextGroup) $("grammarNextGroup").textContent=`次の文法 ${activeGrammarGroup+2}（つぎのぶんぽう / Group selanjutnya）⇥`;
 }
 
 function toggleGrammarPair(){
@@ -2121,7 +2121,7 @@ function renderGrammarCombined(){
     c.className=`grammar-card grammar-row${checked?" understood":""}`;
     c.innerHTML=`<div class="grammar-number">${idx+1}</div>
       <div class="grammar-summary"><div class="grammar-pattern">${g.p}${patternReading?`<span class="grammar-pattern-reading">（${patternReading}）</span>`:""}</div><div class="grammar-meaning">${g.m}</div></div>
-      <label class="grammar-check"><input type="checkbox" data-grammar-key="${g.p}" ${checked?"checked":""}> <span>${checked?"Sudah paham":"Tandai paham"}</span></label>`;
+      <label class="grammar-check"><input type="checkbox" data-grammar-key="${g.p}" ${checked?"checked":""}> <span>${checked?"理解済み（りかいずみ / Paham）":"理解を記録（りかい / Tandai paham）"}</span></label>`;
     list.appendChild(c);
   });
   list.querySelectorAll("[data-grammar-key]").forEach(control=>{
