@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="RyzenMZKSHI R logo">
+  <defs><linearGradient id="navy" x1="18" y1="12" x2="108" y2="118" gradientUnits="userSpaceOnUse"><stop stop-color="#2862E2"/><stop offset="1" stop-color="#0B2454"/></linearGradient><filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#071A3A" flood-opacity=".32"/></filter></defs>
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#navy)"/><rect x="9" y="9" width="110" height="110" rx="25" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2"/>
+  <circle cx="64" cy="64" r="45" fill="#FFFFFF" filter="url(#s)"/><circle cx="88" cy="40" r="19" fill="#E53845"/>
+  <path d="M39 95V34h27c17 0 27 8 27 23 0 10-5 17-14 20l17 18H78L63 79h-7v16H39Zm17-31h10c7 0 11-3 11-8s-4-8-11-8H56v16Z" fill="#102F68"/>
+  <path d="M35 99h59" stroke="#E53845" stroke-width="6" stroke-linecap="round"/>
+</svg>

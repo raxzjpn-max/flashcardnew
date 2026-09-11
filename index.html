@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JLPT N3 By RyzenMZKSHI</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <style>
 :root{--bg:#f4f6fb;--card:#fff;--text:#18212f;--muted:#697386;--primary:#4f46e5;--good:#16a34a;--bad:#dc2626;--line:#e5e7eb}
 *{box-sizing:border-box}
@@ -757,6 +758,10 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);o
 .grammar-pattern-reading{margin-left:7px;color:#60738f;font-size:.82em;font-weight:700;letter-spacing:.01em}
 .grammar-check{display:flex;align-items:center;gap:8px;white-space:nowrap;padding:9px 11px;border:1px solid #d7e2f1;border-radius:11px;background:#fff;color:#536681;font-size:13px;font-weight:800;cursor:pointer}
 .grammar-check input{width:19px;height:19px;accent-color:#16845c}.grammar-card.understood{border-color:#a8dfc8 !important;background:#f2fbf7 !important}.grammar-card.understood .grammar-number{background:#dff6eb;color:#14845d}.grammar-card.understood .grammar-check{border-color:#a8dfc8;color:#14845d;background:#fff}
+.grammar-flash-pattern{font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.35;color:#102f68;text-align:center;padding:0 18px;overflow-wrap:anywhere}
+.grammar-flash-reading{font-size:clamp(16px,2.4vw,22px);font-weight:750;color:#60738f;text-align:center;margin-bottom:14px}
+.grammar-flash-meaning{font-size:clamp(22px,3.5vw,34px);font-weight:850;line-height:1.45;color:#b42335;text-align:center;padding:0 18px}
+#grammarScene{touch-action:pan-y;cursor:grab}#grammarScene.dragging{cursor:grabbing;user-select:none}
 @media(max-width:520px){.grammar-card.grammar-row{grid-template-columns:38px minmax(0,1fr);gap:10px}.grammar-number{width:34px;height:34px}.grammar-check{grid-column:2;width:max-content;padding:7px 9px}.grammar-summary .grammar-pattern{font-size:15px}}
 @media(max-width:640px){.brand-strip{padding:9px 11px !important}.brand-strip strong{font-size:clamp(10px,3.1vw,13px)}.brand-strip span{font-size:clamp(10px,3vw,13px);padding:5px 7px}#dashboard h1{white-space:nowrap !important;font-size:clamp(15px,5.15vw,33px) !important;letter-spacing:-.05em !important}}
 html,body{max-width:100%;overflow-x:auto;overflow-y:auto}
@@ -804,6 +809,70 @@ body{min-width:0}
 #combinePrev.is-active,#combinePrevStudy.is-active{border-color:#4b61cf !important;background:linear-gradient(135deg,#6077e7,#394db4) !important;color:#fff !important;box-shadow:0 8px 18px rgba(65,84,190,.25)}
 #combineFromFirst.is-active,#combineFromFirstStudy.is-active{border-color:#d63245 !important;background:linear-gradient(135deg,#ea5363,#bd2638) !important;color:#fff !important;box-shadow:0 8px 18px rgba(196,42,60,.24)}
 #onlyUnlearned.is-active,#onlyUnlearnedStudy.is-active{border-color:#d59312 !important;background:linear-gradient(135deg,#f1b22d,#cf8410) !important;color:#fff !important;box-shadow:0 8px 18px rgba(205,133,16,.23)}
+#grammarCombinePrev,#grammarCombinePrevStudy{border-color:#b8c6ff !important;background:#eef1ff !important;color:#354bb8 !important}
+#grammarCombineFirst,#grammarCombineFirstStudy{border-color:#f3bdc4 !important;background:#fff0f2 !important;color:#be293a !important}
+#grammarOnlyUnlearned,#grammarOnlyUnlearnedStudy{border-color:#f1d18b !important;background:#fff8e7 !important;color:#9a6400 !important}
+#grammarToList,#toTable{border-color:#9edfd9 !important;background:#eafaf8 !important;color:#137c74 !important}
+#grammarCombinePrev.is-active,#grammarCombinePrevStudy.is-active{border-color:#4b61cf !important;background:linear-gradient(135deg,#6077e7,#394db4) !important;color:#fff !important;box-shadow:0 8px 18px rgba(65,84,190,.25)}
+#grammarCombineFirst.is-active,#grammarCombineFirstStudy.is-active{border-color:#d63245 !important;background:linear-gradient(135deg,#ea5363,#bd2638) !important;color:#fff !important;box-shadow:0 8px 18px rgba(196,42,60,.24)}
+#grammarOnlyUnlearned.is-active,#grammarOnlyUnlearnedStudy.is-active{border-color:#d59312 !important;background:linear-gradient(135deg,#f1b22d,#cf8410) !important;color:#fff !important;box-shadow:0 8px 18px rgba(205,133,16,.23)}
+#grammarGroupGrid .deck{border-left:5px solid #2457d6;background:linear-gradient(135deg,#fff,#eef4ff)}
+#grammarGroupGrid .deck:nth-child(4n+2){border-left-color:#d32f3d;background:linear-gradient(135deg,#fff,#fff0f2)}
+#grammarGroupGrid .deck:nth-child(4n+3){border-left-color:#16845c;background:linear-gradient(135deg,#fff,#ecfaf4)}
+#grammarGroupGrid .deck:nth-child(4n){border-left-color:#d59312;background:linear-gradient(135deg,#fff,#fff8e7)}
+#grammarGroupGrid .deck:nth-child(4n+2) .mini div{background:#d32f3d}#grammarGroupGrid .deck:nth-child(4n+3) .mini div{background:#16845c}#grammarGroupGrid .deck:nth-child(4n) .mini div{background:#d59312}
+/* Border dan warna antarmuka yang lebih tegas dari dashboard sampai materi */
+#dashboard{border:2px solid #bfd0ea !important;box-shadow:0 28px 75px rgba(16,47,104,.16),inset 0 4px 0 #2457d6,inset 0 -4px 0 #df3444 !important}
+.brand-strip{border:1.5px solid #cad8eb !important;background:linear-gradient(90deg,#eef4ff,#fff 50%,#fff0f2) !important}
+.brand-logo{display:block;width:min(430px,72%);height:auto;max-height:62px;object-fit:contain;object-position:left center}.brand-strip .brand-logo+span{margin-left:auto;flex:0 0 auto}
+.material-card{border:2px solid rgba(255,255,255,.72) !important;outline:1px solid rgba(16,47,104,.18);outline-offset:3px}
+.material-vocab{box-shadow:0 20px 46px rgba(31,75,181,.3) !important}.material-n3{box-shadow:0 20px 46px rgba(197,34,49,.28) !important}
+.material-meta{border:1px solid rgba(255,255,255,.32)}
+.hero{border:2px solid #c5d6ef !important;box-shadow:0 12px 30px rgba(23,55,111,.11),inset 5px 0 0 #2457d6 !important}
+.full-card{border:2px solid #a9c0e5 !important;background:linear-gradient(110deg,#fff,#f2f7ff) !important;box-shadow:0 10px 26px rgba(23,55,111,.12) !important}
+.full-card:hover{border-color:#2457d6 !important;box-shadow:0 15px 34px rgba(36,87,214,.18) !important}
+#deckGrid .deck,#grammarGroupGrid .deck{position:relative;border-width:2px !important;box-shadow:0 8px 22px rgba(23,55,111,.1) !important;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+#deckGrid .deck::before,#grammarGroupGrid .deck::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:#2457d6}
+#deckGrid .deck:nth-child(4n+2){border-color:#efb8bf;background:linear-gradient(135deg,#fff,#fff2f4)}#deckGrid .deck:nth-child(4n+2)::before{background:#d32f3d}
+#deckGrid .deck:nth-child(4n+3){border-color:#afdccc;background:linear-gradient(135deg,#fff,#eefaf5)}#deckGrid .deck:nth-child(4n+3)::before{background:#16845c}
+#deckGrid .deck:nth-child(4n){border-color:#ead29e;background:linear-gradient(135deg,#fff,#fff9eb)}#deckGrid .deck:nth-child(4n)::before{background:#d59312}
+#deckGrid .deck:nth-child(4n+1){border-color:#b9cbee;background:linear-gradient(135deg,#fff,#eef4ff)}
+#grammarGroupGrid .deck:nth-child(4n+2)::before{background:#d32f3d}#grammarGroupGrid .deck:nth-child(4n+3)::before{background:#16845c}#grammarGroupGrid .deck:nth-child(4n)::before{background:#d59312}
+#deckGrid .deck:hover,#grammarGroupGrid .deck:hover{transform:translateY(-4px);border-color:#527bd4 !important;box-shadow:0 15px 32px rgba(23,55,111,.17) !important}
+.table-wrap{border:2px solid #b8cbe7 !important;box-shadow:0 14px 35px rgba(23,55,111,.13) !important}.table-tools{border-bottom:2px solid #cad9ec}
+#vocabTable th,#vocabTable td{border-right:1px solid #d8e3f1}#vocabTable th:last-child,#vocabTable td:last-child{border-right:0}#vocabTable tbody tr{border-bottom:1px solid #d7e2f0}
+#vocabTable tbody tr:hover{box-shadow:inset 4px 0 0 #2457d6}
+.grammar-card.grammar-row{border:2px solid #cbd9eb !important;border-left:6px solid #2457d6 !important;box-shadow:0 8px 22px rgba(23,55,111,.09) !important}
+.grammar-card.grammar-row:nth-child(even){border-left-color:#d32f3d !important;background:linear-gradient(100deg,#fff7f8,#fff) !important}
+.grammar-card.grammar-row:hover{border-color:#789bd8 !important;transform:translateX(3px)}
+.grammar-card.grammar-row.understood{border:2px solid #8fd3b8 !important;border-left:6px solid #16845c !important;box-shadow:0 8px 22px rgba(22,132,92,.11) !important}
+.reading-card{border:2px solid #c9d8ec !important;border-left:6px solid #2457d6 !important;background:linear-gradient(105deg,#fff,#f6f9ff) !important}.reading-card:nth-child(even){border-left-color:#d32f3d !important;background:linear-gradient(105deg,#fff,#fff6f7) !important}.reading-card:hover{border-color:#789bd8 !important;box-shadow:0 13px 30px rgba(23,55,111,.14) !important}
+.scene .face{border:2px solid #abc1e5 !important;box-shadow:0 25px 62px rgba(23,55,111,.18),inset 0 5px 0 #2457d6 !important}.scene .face.back{border-color:#efb5bd !important;background:linear-gradient(145deg,#fff,#fff3f5) !important;box-shadow:0 25px 62px rgba(126,30,45,.16),inset 0 5px 0 #d32f3d !important}
+.progress{border:1px solid #c4d3e8;background:#edf2f8 !important;box-shadow:inset 0 1px 3px rgba(16,47,104,.12)}
+.actions button,.nav button,.topright button{border-width:1.5px !important;font-weight:800}.good{border-width:2px !important}.bad{border-width:2px !important}
+.nav{grid-template-columns:repeat(3,minmax(0,1fr))}.next-group{border-color:#8ed3b7 !important;background:linear-gradient(135deg,#eafaf3,#d9f5e8) !important;color:#107451 !important;box-shadow:0 7px 16px rgba(22,132,92,.12)}.next-group:hover{border-color:#16845c !important;background:linear-gradient(135deg,#dff7ec,#c8efdd) !important}
+.topbar,.subpage-head{align-items:flex-start}.topright{flex-wrap:wrap;justify-content:flex-end}.topright .stats{align-self:center;min-width:150px}.topright button{min-height:44px}
+#vocabTable.shown-cols-4 th,#vocabTable.shown-cols-4 td{font-size:13px}
+#vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:15px;padding-top:13px;padding-bottom:13px}
+#vocabTable.shown-cols-2 th,#vocabTable.shown-cols-2 td{font-size:18px;padding-top:16px;padding-bottom:16px}
+#vocabTable.shown-cols-1 th,#vocabTable.shown-cols-1 td{font-size:clamp(20px,2.5vw,26px);padding-top:19px;padding-bottom:19px}
+#vocabTable.shown-cols-3 .td-kanji{font-size:18px}#vocabTable.shown-cols-2 .td-kanji{font-size:23px}#vocabTable.shown-cols-1 .td-kanji{font-size:clamp(25px,3.6vw,34px)}
+#vocabTable.shown-cols-2 .row-btn,#vocabTable.shown-cols-1 .row-btn{font-size:15px;padding:11px 13px}
+@media(max-width:640px){
+  .brand-logo{width:min(270px,78%);max-height:48px}
+  .topbar,.subpage-head{flex-direction:column;align-items:stretch !important}
+  .topbar>button,.subpage-head>button{align-self:flex-start}
+  .topright{display:grid !important;grid-template-columns:1fr 1fr;width:100%;gap:8px !important}
+  .topright .stats{grid-column:1/-1;min-width:0;text-align:left;padding:4px 2px}
+  .topright button{width:100%;min-width:0;white-space:normal;line-height:1.25}
+  .nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #vocabTable.shown-cols-4 th,#vocabTable.shown-cols-4 td{font-size:11px}
+  #vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:13px;padding:11px 5px}
+  #vocabTable.shown-cols-2 th,#vocabTable.shown-cols-2 td{font-size:16px;padding:14px 7px}
+  #vocabTable.shown-cols-1 th,#vocabTable.shown-cols-1 td{font-size:clamp(18px,5vw,23px);padding:17px 9px}
+  #vocabTable.shown-cols-3 .td-kanji{font-size:16px}#vocabTable.shown-cols-2 .td-kanji{font-size:21px}#vocabTable.shown-cols-1 .td-kanji{font-size:clamp(24px,7vw,31px)}
+  #vocabTable.shown-cols-2 .row-btn,#vocabTable.shown-cols-1 .row-btn{font-size:13px;padding:10px 8px}
+}
 @media(max-width:640px){.topright button{min-height:42px}.topright button:hover{transform:none}}
 @media (min-resolution:1.5dppx){.topbar,.topright{flex-wrap:wrap}.table-tools{align-items:stretch}}
 </style>
@@ -819,7 +888,7 @@ body{min-width:0}
   padding:10px 14px;margin-bottom:14px;border-radius:999px;
   background:rgba(255,255,255,.9);border:1px solid #fecdd3;
   box-shadow:0 8px 24px rgba(17,24,39,.06);font-size:13px;">
-  <strong style="color:#9f1239">RYZENMZKSHI • JLPT N3</strong>
+  <img class="brand-logo" src="./ryzenmzkshi-logo.svg" alt="RyzenMZKSHI — 日本語学習 JLPT N3">
   <span class="flag-pair" role="img" aria-label="Bendera Jepang dan Indonesia">
     <img class="flag-icon" alt="Jepang" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23fff'/%3E%3Ccircle cx='450' cy='300' r='180' fill='%23bc002d'/%3E%3C/svg%3E">
     <img class="flag-icon" alt="Indonesia" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cpath fill='%23e70011' d='M0 0h900v300H0z'/%3E%3Cpath fill='%23fff' d='M0 300h900v300H0z'/%3E%3C/svg%3E">
@@ -862,13 +931,71 @@ body{min-width:0}
 </section>
 
 
+<section id="grammarGroupMenu" class="hidden">
+  <div class="subpage-head">
+    <button id="grammarGroupBack">← Kembali</button>
+    <div class="stats"><b>GRAMMAR</b><br><span id="grammarGroupSummary"></span></div>
+  </div>
+  <div class="hero">
+    <h2>GRAMMAR JLPT N3</h2>
+    <p>Setiap kelompok berisi maksimal 10 pola grammar.</p>
+  </div>
+  <div class="grid" id="grammarGroupGrid"></div>
+</section>
+
 <section id="grammarCombinedView" class="hidden">
   <div class="subpage-head">
     <button id="grammarCombinedBack">← Kembali</button>
-    <div class="stats"><b>GRAMMAR</b><br><span id="grammarCombinedCount"></span></div>
+    <div class="topright">
+      <div class="stats"><b id="grammarCombinedTitle">GRAMMAR</b><br><span id="grammarCombinedCount"></span></div>
+      <button id="grammarCombinePrev">Gabungkan 1 Kelompok Sebelumnya</button>
+      <button id="grammarCombineFirst">Gabungkan dari Grammar 1</button>
+      <button id="grammarOnlyUnlearned">○ Belum Paham Saja</button>
+      <button class="primary" id="grammarToFlash">Mode Flashcard →</button>
+    </div>
   </div>
   <input class="grammar-search" id="grammarCombinedSearch" placeholder="Cari pola grammar atau arti...">
   <div class="grammar-list" id="grammarCombinedList"></div>
+</section>
+
+<section id="grammarStudy" class="hidden">
+  <div class="topbar">
+    <button id="grammarStudyBack">← Kembali</button>
+    <div class="topright">
+      <div class="stats"><b>FLASHCARD GRAMMAR</b><br><span id="grammarCounter"></span> • Paham: <b id="grammarKnown">0</b></div>
+      <button id="grammarCombinePrevStudy">Gabungkan 1 Kelompok Sebelumnya</button>
+      <button id="grammarCombineFirstStudy">Gabungkan dari Grammar 1</button>
+      <button id="grammarOnlyUnlearnedStudy">○ Belum Paham Saja</button>
+      <button class="next-group" id="grammarNextGroup">Group Selanjutnya ⇥</button>
+      <button id="grammarToList">Mode Daftar →</button>
+    </div>
+  </div>
+  <div class="progress"><div id="grammarBar"></div></div>
+  <div class="scene" id="grammarScene">
+    <div class="card" id="grammarCard">
+      <section class="face front">
+        <div class="label">Apa arti pola grammar ini?</div>
+        <div class="grammar-flash-pattern" id="grammarPattern"></div>
+        <div class="hint">Ketuk kartu untuk melihat arti</div>
+      </section>
+      <section class="face back">
+        <div class="label">Arti</div>
+        <div class="grammar-flash-reading" id="grammarPatternReading"></div>
+        <div class="grammar-flash-meaning" id="grammarMeaning"></div>
+        <div class="hint">Ketuk lagi untuk melihat pola</div>
+      </section>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="bad" id="grammarAgain">✕ Belum paham</button>
+    <button class="good" id="grammarKnow">✓ Sudah paham</button>
+  </div>
+  <div class="nav">
+    <button id="grammarPrev">← Sebelumnya</button>
+    <button class="primary" id="grammarShuffle">⤨ Acak</button>
+    <button id="grammarNext">Berikutnya →</button>
+  </div>
+  <div class="footer">Ketuk/Space untuk membalik • Geser atau gunakan tombol panah untuk berpindah.</div>
 </section>
 
 
@@ -926,6 +1053,7 @@ body{min-width:0}
       <button id="combinePrevStudy">Gabungkan 1 Bagian Sebelumnya</button>
       <button id="combineFromFirstStudy">Gabungkan dari Flashcard 1</button>
       <button id="onlyUnlearnedStudy">○ Belum Hafal Saja</button>
+      <button class="next-group" id="nextGroupStudy">Group Selanjutnya ⇥</button>
       <button id="toReadingStudy">Mode Reading →</button>
       <button id="toTable">Mode Tabel →</button>
     </div>
@@ -988,13 +1116,37 @@ function improveVocabularyExamples(words){
     {jp:"図書館で本を読んでいる時",jr:"としょかんで ほんを よんでいる とき",id:"Saat membaca buku di perpustakaan"},
     {jp:"朝の会話の中で",jr:"あさの かいわの なかで",id:"Dalam percakapan pagi hari"}
   ];
-  const actions = [
-    {jp:"使い方を確認しました。",jr:"つかいかたを かくにんしました。",id:"saya memastikan cara memakai kata ini."},
-    {jp:"自然な使い方を教えてもらいました。",jr:"しぜんな つかいかたを おしえてもらいました。",id:"saya belajar cara alami memakai kata ini."},
-    {jp:"会話で使える場面を考えました。",jr:"かいわで つかえる ばめんを かんがえました。",id:"saya memikirkan situasi percakapan yang cocok untuk kata ini."},
-    {jp:"意味を例文と一緒に覚えました。",jr:"いみを れいぶんと いっしょに おぼえました。",id:"saya mengingat artinya bersama sebuah contoh kalimat."}
+  const moments = [
+    {jp:"今朝",jr:"けさ",id:"Tadi pagi"},{jp:"昨日",jr:"きのう",id:"Kemarin"},
+    {jp:"先週",jr:"せんしゅう",id:"Minggu lalu"},{jp:"放課後",jr:"ほうかご",id:"Sepulang sekolah"},
+    {jp:"昼休みに",jr:"ひるやすみに",id:"Saat istirahat siang"},{jp:"帰宅してから",jr:"きたくしてから",id:"Setelah pulang"},
+    {jp:"週末に",jr:"しゅうまつに",id:"Pada akhir pekan"},{jp:"日本語の授業で",jr:"にほんごの じゅぎょうで",id:"Dalam pelajaran bahasa Jepang"},
+    {jp:"会話の練習中に",jr:"かいわの れんしゅうちゅうに",id:"Saat latihan percakapan"},
+    {jp:"電車を待っている間に",jr:"でんしゃを まっている あいだに",id:"Sambil menunggu kereta"},
+    {jp:"夕食のあと",jr:"ゆうしょくの あと",id:"Setelah makan malam"},{jp:"寝る前に",jr:"ねる まえに",id:"Sebelum tidur"}
   ];
-  const generic = s => !s || /授業で「.+」の意味と使い方|日常生活で「.+」という言葉|について勉強しています|この.+は日常生活でもよく使われます/.test(s);
+  const frames = [
+    (v,s,t,m)=>({jp:`${t.jp}、「${v.k}」を使った短い文をノートに書きました。`,jr:`${t.jr}、「${v.h}」を つかった みじかい ぶんを ノートに かきました。`,id:`${t.id}, saya menulis kalimat pendek memakai “${m}” di buku catatan.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」が使われる場面について友達と話しました。`,jr:`${s.jr}、「${v.h}」が つかわれる ばめんについて ともだちと はなしました。`,id:`${s.id}, saya membicarakan situasi penggunaan “${m}” bersama teman.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、先生に「${v.k}」の自然な使い方を質問しました。`,jr:`${t.jr}、せんせいに「${v.h}」の しぜんな つかいかたを しつもんしました。`,id:`${t.id}, saya bertanya kepada guru tentang cara alami memakai “${m}”.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」の意味を思い出して自分で例文を作りました。`,jr:`${s.jr}、「${v.h}」の いみを おもいだして じぶんで れいぶんを つくりました。`,id:`${s.id}, saya mengingat arti “${m}” lalu membuat contoh kalimat sendiri.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、日本語の動画で「${v.k}」を聞き、使い方を確かめました。`,jr:`${t.jr}、にほんごの どうがで「${v.h}」を きき、つかいかたを たしかめました。`,id:`${t.id}, saya mendengar “${m}” dalam video bahasa Jepang lalu mengecek penggunaannya.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、友達が「${v.k}」という表現を使ったので、あとで辞書を引きました。`,jr:`${s.jr}、ともだちが「${v.h}」という ひょうげんを つかったので、あとで じしょを ひきました。`,id:`${s.id}, karena teman memakai ungkapan “${m}”, saya mencarinya di kamus setelah itu.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、「${v.k}」と似た言葉の違いをカードにまとめました。`,jr:`${t.jr}、「${v.h}」と にた ことばの ちがいを カードに まとめました。`,id:`${t.id}, saya merangkum perbedaan “${m}” dengan kata yang mirip pada sebuah kartu.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、会話の流れに合うように「${v.k}」を使ってみました。`,jr:`${s.jr}、かいわの ながれに あうように「${v.h}」を つかってみました。`,id:`${s.id}, saya mencoba memakai “${m}” agar sesuai dengan alur percakapan.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、読んでいた文章の中に「${v.k}」が出てきました。`,jr:`${t.jr}、よんでいた ぶんしょうの なかに「${v.h}」が でてきました。`,id:`${t.id}, “${m}” muncul dalam bacaan yang sedang saya baca.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」をどんな時に使うのか、先生が具体的に説明してくれました。`,jr:`${s.jr}、「${v.h}」を どんな ときに つかうのか、せんせいが ぐたいてきに せつめいしてくれました。`,id:`${s.id}, guru menjelaskan secara konkret kapan “${m}” digunakan.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、「${v.k}」を使う会話を声に出して練習しました。`,jr:`${t.jr}、「${v.h}」を つかう かいわを こえに だして れんしゅうしました。`,id:`${t.id}, saya berlatih mengucapkan percakapan yang memakai “${m}”.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、初めて「${v.k}」を聞き、文脈から意味を考えました。`,jr:`${s.jr}、はじめて「${v.h}」を きき、ぶんみゃくから いみを かんがえました。`,id:`${s.id}, saya mendengar “${m}” untuk pertama kali dan menebak artinya dari konteks.`}),
+    (v,s,t,m)=>({jp:`${t.jp}の日記には、「${v.k}」を使って出来事を書きました。`,jr:`${t.jr}の にっきには、「${v.h}」を つかって できごとを かきました。`,id:`Dalam catatan ${t.id.toLowerCase()}, saya menulis sebuah kejadian memakai “${m}”.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」のニュアンスが分かる例文を見つけました。`,jr:`${s.jr}、「${v.h}」の ニュアンスが わかる れいぶんを みつけました。`,id:`${s.id}, saya menemukan contoh yang membantu memahami nuansa “${m}”.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、覚えたばかりの「${v.k}」を会話で使うことができました。`,jr:`${t.jr}、おぼえたばかりの「${v.h}」を かいわで つかうことが できました。`,id:`${t.id}, saya berhasil memakai “${m}” yang baru dipelajari dalam percakapan.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」を別の言い方に置き換えられるか考えました。`,jr:`${s.jr}、「${v.h}」を べつの いいかたに おきかえられるか かんがえました。`,id:`${s.id}, saya memikirkan apakah “${m}” bisa diganti dengan ungkapan lain.`}),
+    (v,s,t,m)=>({jp:`${t.jp}、クイズに出た「${v.k}」を正しく答えることができました。`,jr:`${t.jr}、クイズに でた「${v.h}」を ただしく こたえることが できました。`,id:`${t.id}, saya dapat menjawab dengan benar soal kuis tentang “${m}”.`}),
+    (v,s,t,m)=>({jp:`${s.jp}、「${v.k}」を含む文を二度読んで、意味を確認しました。`,jr:`${s.jr}、「${v.h}」を ふくむ ぶんを にど よんで、いみを かくにんしました。`,id:`${s.id}, saya membaca dua kali kalimat yang memuat “${m}” untuk memastikan artinya.`})
+  ];
+  const generic = s => !s || /授業で「.+」の意味と使い方|日常生活で「?.+」?(?:という言葉|を使う場面)|について勉強しています|日常生活でもよく使われます|駅で.+を確認してから出発|最近、.+についてよく考える|必要な.+を事前に準備|仕事では.+がとても重要|について、先生が詳しく説明|という言葉の(?:意味を例文|自然な使い方|使い方を確認|会話で使える場面)/.test(s);
+  const stableHash = text => [...text].reduce((hash,char)=>((hash*31)+char.codePointAt(0))>>>0,2166136261);
   const used = new Set();
 
   words.forEach((v,index)=>{
@@ -1004,13 +1156,11 @@ function improveVocabularyExamples(words){
 
     if(!chosen || used.has(chosen.jp)){
       const meaning = v.m || "kosakata ini";
-      const scene = contexts.find(c=>c.keys.test(meaning)) || fallback[index % fallback.length];
-      const action = actions[Math.floor(index / fallback.length) % actions.length];
-      chosen = {
-        jp:`${scene.jp}、「${v.k}」という言葉の${action.jp}`,
-        jr:`${scene.jr}、「${v.h}」という ことばの ${action.jr}`,
-        id:`${scene.id}, untuk kosakata “${meaning}”, ${action.id}`
-      };
+      const seed = stableHash(`${v.k}|${v.h}|${meaning}|${index}`);
+      const scene = contexts.find(c=>c.keys.test(meaning)) || fallback[seed % fallback.length];
+      const moment = moments[Math.floor(seed / 7) % moments.length];
+      const frame = frames[Math.floor(seed / 17) % frames.length];
+      chosen = frame(v,scene,moment,meaning);
     }
 
     // Jaminan terakhir bila data sumber ternyata mempunyai entri kembar.
@@ -1049,7 +1199,7 @@ if(!progressData[GLOBAL_PROGRESS_KEY]){
   progressData[GLOBAL_PROGRESS_KEY]=[...new Set(Object.values(progressData).flat().filter(v=>typeof v==="string"))];
   localStorage.setItem("n4n3-2589-progress",JSON.stringify(progressData));
 }
-const viewIds=["dashboard","vocabMenu","grammarCombinedView","tableView","study","readingView"];
+const viewIds=["dashboard","vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study","readingView"];
 let currentView="dashboard";
 const navigationHistory=[];
 
@@ -1069,6 +1219,8 @@ function showPreviousPage(){
   if(previous==="study") renderFlash();
   if(previous==="readingView") renderReading();
   if(previous==="grammarCombinedView") renderGrammarCombined();
+  if(previous==="grammarStudy") renderGrammarFlash();
+  if(previous==="grammarGroupMenu") renderGrammarGroups();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -1179,6 +1331,9 @@ function updateCombineButtons(){
   $("combinePrevStudy").classList.toggle("hidden", hide);
   $("combineFromFirst").classList.toggle("hidden", hide);
   $("combineFromFirstStudy").classList.toggle("hidden", hide);
+  const hasNextGroup=activeDeckIndex!==null&&activeDeckIndex<sets.length-1;
+  $("nextGroupStudy").classList.toggle("hidden",!hasNextGroup);
+  if(hasNextGroup) $("nextGroupStudy").textContent=`Flashcard ${activeDeckIndex+2} Selanjutnya ⇥`;
 
   const pairActive=isCombinedMode&&!isFromFirstMode;
   const fromFirstActive=isCombinedMode&&isFromFirstMode;
@@ -1240,11 +1395,14 @@ function renderTable(){
 function applyColumnVisibility(){
   const table=$("vocabTable");
   table.classList.remove("hide-col-number");
+  table.classList.remove("shown-cols-1","shown-cols-2","shown-cols-3","shown-cols-4");
   Object.entries(tableColumns).forEach(([column,visible])=>{
     table.classList.toggle(`hide-col-${column}`,!visible);
     const control=document.querySelector(`[data-toggle-col="${column}"]`);
     if(control) control.checked=visible;
   });
+  const visibleCount=Math.max(1,Object.values(tableColumns).filter(Boolean).length);
+  table.classList.add(`shown-cols-${Math.min(4,visibleCount)}`);
 }
 
 function openFlash(start=0){
@@ -1434,6 +1592,13 @@ flashScene.addEventListener("pointerup",finishCardDrag);
 flashScene.addEventListener("pointercancel",finishCardDrag);
 $("next").onclick=next;
 $("prev").onclick=()=>slideNavigate(-1);
+$("nextGroupStudy").onclick=()=>{
+  if(activeDeckIndex===null||activeDeckIndex>=sets.length-1)return;
+  selectDeck(activeDeckIndex+1);
+  index=0;
+  $("studyTitle").textContent=deckName();
+  renderFlash();
+};
 $("shuffle").onclick=()=>{let n=index;while(currentDeck.length>1&&n===index)n=Math.floor(Math.random()*currentDeck.length);slideNavigate(1,n)};
 $("know").onclick=()=>{
   if(!currentDeck.length) return;
@@ -1823,8 +1988,127 @@ function prioritizedN3Grammar(){
     .sort((a,b)=>(rank.get(a.p)??9999)-(rank.get(b.p)??9999)||a.originalIndex-b.originalIndex);
 }
 
-function renderGrammarCombined(){
+const GRAMMAR_GROUP_SIZE=10;
+let activeGrammarGroup=0;
+let grammarCombinedMode=false;
+let grammarFromFirstMode=false;
+let grammarOnlyUnlearned=false;
+let grammarSourceDeck=[];
+
+function groupedGrammar(){
   const data=prioritizedN3Grammar();
+  return Array.from({length:Math.ceil(data.length/GRAMMAR_GROUP_SIZE)},(_,index)=>
+    data.slice(index*GRAMMAR_GROUP_SIZE,(index+1)*GRAMMAR_GROUP_SIZE)
+  );
+}
+
+function renderGrammarGroups(){
+  const groups=groupedGrammar();
+  const grid=$("grammarGroupGrid");
+  grid.innerHTML="";
+  groups.forEach((group,index)=>{
+    const understood=group.filter(g=>grammarUnderstood[g.p]).length;
+    const card=document.createElement("div");
+    card.className="deck";
+    card.setAttribute("role","button");
+    card.tabIndex=0;
+    card.innerHTML=`<strong>Grammar ${index+1}</strong><span>${group.length} pola • Paham ${understood}/${group.length}</span><div class="mini"><div style="width:${group.length?(understood/group.length)*100:0}%"></div></div>`;
+    const open=()=>openGrammarGroup(index);
+    card.onclick=open;
+    card.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}};
+    grid.appendChild(card);
+  });
+  const all=prioritizedN3Grammar();
+  const understood=all.filter(g=>grammarUnderstood[g.p]).length;
+  $("grammarGroupSummary").textContent=`${groups.length} kelompok • ${understood}/${all.length} paham`;
+}
+
+function openGrammarGroup(groupIndex){
+  activeGrammarGroup=groupIndex;
+  grammarCombinedMode=false;
+  grammarFromFirstMode=false;
+  grammarOnlyUnlearned=false;
+  updateGrammarDeck();
+  noteNavigation("grammarCombinedView");
+  viewIds.forEach(id=>$(id)?.classList.add("hidden"));
+  $("grammarCombinedView").classList.remove("hidden");
+  $("grammarCombinedSearch").value="";
+  renderGrammarCombined();
+}
+
+function grammarSelectionName(){
+  const suffix=grammarOnlyUnlearned?" • Belum Paham":"";
+  if(grammarCombinedMode&&grammarFromFirstMode) return `GRAMMAR 1–${activeGrammarGroup+1}${suffix}`;
+  if(grammarCombinedMode) return `GRAMMAR ${activeGrammarGroup} + ${activeGrammarGroup+1}${suffix}`;
+  return `GRAMMAR ${activeGrammarGroup+1}${suffix}`;
+}
+
+function updateGrammarDeck(){
+  const groups=groupedGrammar();
+  if(grammarCombinedMode&&grammarFromFirstMode) grammarSourceDeck=groups.slice(0,activeGrammarGroup+1).flat();
+  else if(grammarCombinedMode) grammarSourceDeck=groups.slice(Math.max(0,activeGrammarGroup-1),activeGrammarGroup+1).flat();
+  else grammarSourceDeck=[...(groups[activeGrammarGroup]||[])];
+  grammarDeck=grammarOnlyUnlearned
+    ? grammarSourceDeck.filter(g=>!grammarUnderstood[g.p])
+    : [...grammarSourceDeck];
+  grammarIndex=Math.min(grammarIndex,Math.max(0,grammarDeck.length-1));
+  updateGrammarControls();
+}
+
+function updateGrammarControls(){
+  const hideCombine=activeGrammarGroup===0;
+  ["grammarCombinePrev","grammarCombinePrevStudy","grammarCombineFirst","grammarCombineFirstStudy"].forEach(id=>$(id)?.classList.toggle("hidden",hideCombine));
+  const pairActive=grammarCombinedMode&&!grammarFromFirstMode;
+  const firstActive=grammarCombinedMode&&grammarFromFirstMode;
+  ["grammarCombinePrev","grammarCombinePrevStudy"].forEach(id=>{
+    const button=$(id);if(!button)return;
+    button.classList.toggle("is-active",pairActive);
+    button.textContent=`${pairActive?"✓ ":""}Gabungkan Grammar ${activeGrammarGroup} + ${activeGrammarGroup+1}`;
+  });
+  ["grammarCombineFirst","grammarCombineFirstStudy"].forEach(id=>{
+    const button=$(id);if(!button)return;
+    button.classList.toggle("is-active",firstActive);
+    button.textContent=`${firstActive?"✓ ":""}Dari Grammar 1–${activeGrammarGroup+1}`;
+  });
+  ["grammarOnlyUnlearned","grammarOnlyUnlearnedStudy"].forEach(id=>{
+    const button=$(id);if(!button)return;
+    button.classList.toggle("is-active",grammarOnlyUnlearned);
+    button.textContent=grammarOnlyUnlearned?"✓ Belum Paham Saja":"○ Belum Paham Saja";
+  });
+  const hasNextGroup=activeGrammarGroup<groupedGrammar().length-1;
+  $("grammarNextGroup").classList.toggle("hidden",!hasNextGroup);
+  if(hasNextGroup) $("grammarNextGroup").textContent=`Grammar ${activeGrammarGroup+2} Selanjutnya ⇥`;
+}
+
+function toggleGrammarPair(){
+  if(activeGrammarGroup===0)return;
+  grammarCombinedMode=!(grammarCombinedMode&&!grammarFromFirstMode);
+  grammarFromFirstMode=false;
+  grammarOnlyUnlearned=false;
+  grammarIndex=0;updateGrammarDeck();renderGrammarActiveView();
+}
+
+function toggleGrammarFromFirst(){
+  if(activeGrammarGroup===0)return;
+  const wasActive=grammarCombinedMode&&grammarFromFirstMode;
+  grammarCombinedMode=!wasActive;grammarFromFirstMode=!wasActive;
+  grammarOnlyUnlearned=false;
+  grammarIndex=0;updateGrammarDeck();renderGrammarActiveView();
+}
+
+function toggleGrammarUnlearned(){
+  grammarOnlyUnlearned=!grammarOnlyUnlearned;
+  grammarIndex=0;updateGrammarDeck();renderGrammarActiveView();
+}
+
+function renderGrammarActiveView(){
+  if(!$("grammarCombinedView").classList.contains("hidden")) renderGrammarCombined();
+  if(!$("grammarStudy").classList.contains("hidden")) renderGrammarFlash();
+}
+
+function renderGrammarCombined(){
+  if(!grammarSourceDeck.length&&!grammarOnlyUnlearned) updateGrammarDeck();
+  const data=grammarDeck;
   const q=$("grammarCombinedSearch").value.trim().toLowerCase();
   const list=$("grammarCombinedList");
   const count=$("grammarCombinedCount");
@@ -1844,15 +2128,169 @@ function renderGrammarCombined(){
     control.addEventListener("change",()=>{
       grammarUnderstood[control.dataset.grammarKey]=control.checked;
       localStorage.setItem(GRAMMAR_PROGRESS_KEY,JSON.stringify(grammarUnderstood));
+      updateGrammarDeck();
       renderGrammarCombined();
     });
   });
   const understoodCount=data.filter(g=>grammarUnderstood[g.p]).length;
-  count.textContent=`${understoodCount}/${data.length} sudah paham${q?` • ${filtered.length} hasil`:""}`;
+  $("grammarCombinedTitle").textContent=grammarSelectionName();
+  count.textContent=grammarOnlyUnlearned
+    ? `${data.length} pola belum paham${q?` • ${filtered.length} hasil`:""}`
+    : `${understoodCount}/${data.length} sudah paham${q?` • ${filtered.length} hasil`:""}`;
+  updateGrammarControls();
 }
 
+let grammarDeck=[];
+let grammarIndex=0;
+let grammarCardMoving=false;
+
+function openGrammarFlash(start=0){
+  updateGrammarDeck();
+  grammarIndex=Math.max(0,Math.min(start,grammarDeck.length-1));
+  noteNavigation("grammarStudy");
+  viewIds.forEach(id=>$(id)?.classList.add("hidden"));
+  $("grammarStudy").classList.remove("hidden");
+  renderGrammarFlash();
+}
+
+function renderGrammarFlash(){
+  updateGrammarControls();
+  if(!grammarDeck.length){
+    $("grammarPattern").textContent="全部分かりました！";
+    $("grammarPatternReading").textContent="ぜんぶ わかりました";
+    $("grammarMeaning").textContent="Semua pola grammar pada pilihan ini sudah dipahami 🎉";
+    $("grammarCounter").textContent="0 / 0";
+    $("grammarKnown").textContent=grammarSourceDeck.filter(item=>grammarUnderstood[item.p]).length;
+    $("grammarBar").style.width="100%";
+    $("grammarCard").classList.add("flipped");
+    ["grammarPrev","grammarNext","grammarShuffle","grammarKnow","grammarAgain"].forEach(id=>$(id).disabled=true);
+    return;
+  }
+  ["grammarPrev","grammarNext","grammarShuffle","grammarKnow","grammarAgain"].forEach(id=>$(id).disabled=false);
+  const g=grammarDeck[grammarIndex];
+  if(!g) return;
+  $("grammarPattern").textContent=g.p;
+  const reading=grammarPatternReadings[g.p]||"";
+  $("grammarPatternReading").textContent=reading ? `（${reading}）` : "";
+  $("grammarMeaning").textContent=g.m;
+  $("grammarCounter").textContent=`${grammarIndex+1} / ${grammarDeck.length}`;
+  $("grammarKnown").textContent=grammarSourceDeck.filter(item=>grammarUnderstood[item.p]).length;
+  $("grammarBar").style.width=`${((grammarIndex+1)/grammarDeck.length)*100}%`;
+  $("grammarCard").classList.remove("flipped");
+}
+
+async function slideGrammar(direction,targetIndex=null){
+  if(grammarCardMoving || !grammarDeck.length) return;
+  const nextIndex=targetIndex===null
+    ? (grammarIndex+direction+grammarDeck.length)%grammarDeck.length
+    : targetIndex;
+  if(nextIndex===grammarIndex && grammarDeck.length===1){renderGrammarFlash();return}
+  const scene=$("grammarScene");
+  const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  grammarCardMoving=true;
+  try{
+    if(!reduceMotion && scene.animate){
+      const outgoing=scene.animate(
+        [{transform:"translateX(0) rotate(0deg)",opacity:1},{transform:`translateX(${direction>0?"-112%":"112%"}) rotate(${direction>0?"-3deg":"3deg"})`,opacity:.12}],
+        {duration:190,easing:"cubic-bezier(.4,0,1,1)",fill:"forwards"}
+      );
+      await outgoing.finished; outgoing.cancel();
+    }
+    grammarIndex=nextIndex;
+    renderGrammarFlash();
+    if(!reduceMotion && scene.animate){
+      const incoming=scene.animate(
+        [{transform:`translateX(${direction>0?"112%":"-112%"}) rotate(${direction>0?"3deg":"-3deg"})`,opacity:.12},{transform:"translateX(0) rotate(0deg)",opacity:1}],
+        {duration:230,easing:"cubic-bezier(.16,1,.3,1)"}
+      );
+      await incoming.finished; incoming.cancel();
+    }
+  }catch(_){grammarIndex=nextIndex;renderGrammarFlash()}
+  finally{
+    scene.getAnimations?.().forEach(animation=>animation.cancel());
+    scene.style.transform="";scene.style.opacity="";
+    grammarCardMoving=false;
+  }
+}
+
+const grammarScene=$("grammarScene");
+let grammarDragStartX=0,grammarDragDeltaX=0,grammarDragActive=false;
+grammarScene.addEventListener("pointerdown",e=>{
+  if(grammarCardMoving || !grammarDeck.length) return;
+  grammarDragActive=true;grammarDragStartX=e.clientX;grammarDragDeltaX=0;
+  grammarScene.classList.add("dragging");
+  grammarScene.setPointerCapture?.(e.pointerId);
+});
+grammarScene.addEventListener("pointermove",e=>{
+  if(!grammarDragActive) return;
+  grammarDragDeltaX=e.clientX-grammarDragStartX;
+  const limited=Math.max(-160,Math.min(160,grammarDragDeltaX));
+  grammarScene.style.transform=`translateX(${limited}px) rotate(${limited/55}deg)`;
+  grammarScene.style.opacity=String(Math.max(.55,1-Math.abs(limited)/360));
+});
+function finishGrammarDrag(e){
+  if(!grammarDragActive) return;
+  grammarDragActive=false;grammarScene.classList.remove("dragging");
+  grammarScene.releasePointerCapture?.(e.pointerId);
+  const moved=Math.abs(grammarDragDeltaX);
+  grammarScene.style.transition="transform .2s ease,opacity .2s ease";
+  grammarScene.style.transform="";grammarScene.style.opacity="";
+  setTimeout(()=>grammarScene.style.transition="",210);
+  if(moved>=55) slideGrammar(grammarDragDeltaX<0?1:-1);
+  else if(moved<8) $("grammarCard").classList.toggle("flipped");
+}
+grammarScene.addEventListener("pointerup",finishGrammarDrag);
+grammarScene.addEventListener("pointercancel",finishGrammarDrag);
+
+$("grammarNext").onclick=()=>slideGrammar(1);
+$("grammarPrev").onclick=()=>slideGrammar(-1);
+$("grammarNextGroup").onclick=()=>{
+  const groups=groupedGrammar();
+  if(activeGrammarGroup>=groups.length-1)return;
+  activeGrammarGroup+=1;
+  grammarCombinedMode=false;grammarFromFirstMode=false;grammarOnlyUnlearned=false;
+  grammarIndex=0;updateGrammarDeck();renderGrammarFlash();
+};
+$("grammarShuffle").onclick=()=>{
+  let nextIndex=grammarIndex;
+  while(grammarDeck.length>1&&nextIndex===grammarIndex) nextIndex=Math.floor(Math.random()*grammarDeck.length);
+  slideGrammar(1,nextIndex);
+};
+$("grammarKnow").onclick=()=>{
+  if(!grammarDeck.length) return;
+  grammarUnderstood[grammarDeck[grammarIndex].p]=true;
+  localStorage.setItem(GRAMMAR_PROGRESS_KEY,JSON.stringify(grammarUnderstood));
+  if(grammarOnlyUnlearned){
+    updateGrammarDeck();
+    renderGrammarFlash();
+  }else slideGrammar(1);
+};
+$("grammarAgain").onclick=()=>{
+  if(!grammarDeck.length) return;
+  grammarUnderstood[grammarDeck[grammarIndex].p]=false;
+  localStorage.setItem(GRAMMAR_PROGRESS_KEY,JSON.stringify(grammarUnderstood));
+  slideGrammar(1);
+};
+$("grammarCombinePrev").onclick=toggleGrammarPair;
+$("grammarCombinePrevStudy").onclick=toggleGrammarPair;
+$("grammarCombineFirst").onclick=toggleGrammarFromFirst;
+$("grammarCombineFirstStudy").onclick=toggleGrammarFromFirst;
+$("grammarOnlyUnlearned").onclick=toggleGrammarUnlearned;
+$("grammarOnlyUnlearnedStudy").onclick=toggleGrammarUnlearned;
+$("grammarToFlash").onclick=()=>openGrammarFlash(0);
+$("grammarStudyBack").onclick=showPreviousPage;
+$("grammarToList").onclick=showPreviousPage;
+
+document.addEventListener("keydown",e=>{
+  if(!$("grammarStudy").classList.contains("hidden")){
+    if(e.code==="Space"){e.preventDefault();$("grammarCard").classList.toggle("flipped")}
+    if(e.key==="ArrowRight"){e.preventDefault();slideGrammar(1)}
+    if(e.key==="ArrowLeft"){e.preventDefault();slideGrammar(-1)}
+  }
+});
+
 function showMainDashboard(){
-  ["vocabMenu","grammarCombinedView","tableView","study","readingView"].forEach(id=>{const e=$(id);if(e)e.classList.add("hidden")});
+  ["vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study","readingView"].forEach(id=>{const e=$(id);if(e)e.classList.add("hidden")});
   $("dashboard").classList.remove("hidden");
 }
 
@@ -1864,13 +2302,13 @@ $("openVocabMenu").onclick=()=>{
   buildDashboard();
 };
 $("openGrammarCombined").onclick=()=>{
-  noteNavigation("grammarCombinedView");
+  noteNavigation("grammarGroupMenu");
   $("dashboard").classList.add("hidden");
-  $("grammarCombinedView").classList.remove("hidden");
-  $("grammarCombinedSearch").value="";
-  renderGrammarCombined();
+  $("grammarGroupMenu").classList.remove("hidden");
+  renderGrammarGroups();
 };
 $("vocabMenuBack").onclick=showPreviousPage;
+$("grammarGroupBack").onclick=showPreviousPage;
 $("grammarCombinedBack").onclick=showPreviousPage;
 $("grammarCombinedSearch").addEventListener("input",renderGrammarCombined);
 
