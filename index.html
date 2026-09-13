@@ -896,6 +896,16 @@ body{min-width:0}
 .feature-menu-panel button.primary,.feature-menu-panel button.quiz-button{text-align:center}
 .feature-menu-panel .hidden{display:none !important}
 @media(max-width:640px){.feature-menu{grid-column:1/-1;width:100%}.feature-menu summary{width:100%}.feature-menu-panel{left:0;right:auto;width:100%}}
+.topbar>button,.subpage-head>button{width:max-content !important;min-width:0 !important;min-height:40px !important;height:auto !important;padding:7px 11px !important;border-radius:10px !important;line-height:1.15}
+.feature-menu summary{width:max-content;min-height:40px;padding:7px 12px;border-radius:10px}
+@media(max-width:640px){.feature-menu{width:max-content;max-width:100%;justify-self:end}.feature-menu summary{width:max-content}.feature-menu-panel{left:auto;right:0;width:min(290px,calc(100vw - 28px))}}
+@media(min-width:901px){
+  .topbar,.subpage-head:has(.topright){grid-template-columns:max-content minmax(0,1fr);align-items:center !important;gap:10px;padding:9px 11px;min-height:0}
+  .topbar>button,.subpage-head:has(.topright)>button{align-self:center;width:max-content !important;height:auto !important;min-height:40px !important}
+  .topright{display:flex !important;align-items:center;justify-content:flex-end;flex-wrap:nowrap;width:100%;min-height:0;gap:10px}
+  .topright .stats{grid-column:auto;grid-row:auto;flex:1;align-self:center;min-width:0 !important;min-height:44px;padding:7px 12px}
+  .topright .feature-menu{flex:0 0 auto;align-self:center}
+}
 </style>
 </head>
 <body>
