@@ -45,12 +45,6 @@ th{background:#f8fafc;font-size:13px;color:var(--muted)} td{font-size:14px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
 @media(max-width:560px){.topright{flex-wrap:wrap;justify-content:flex-end}.grid{grid-template-columns:1fr}.table-wrap{overflow-x:auto}table{min-width:620px}.scene{height:300px}.kanji{font-size:54px}.meaning{font-size:23px}.topright{gap:6px}button{font-size:12px;padding:10px}}
 
-.reading-list{display:grid;gap:12px}
-.reading-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 5px 16px rgba(0,0,0,.04)}
-.reading-word{font-size:20px;font-weight:800;margin-bottom:10px}
-.reading-jp{font-size:18px;font-weight:700;line-height:1.7}
-.reading-r{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.6}
-.reading-m{font-size:14px;margin-top:9px;line-height:1.6}
 
 
 /* Tampilan tabel HP: setiap isi baris memanjang ke samping, bukan huruf turun ke bawah */
@@ -728,7 +722,6 @@ body::before{background-image:linear-gradient(rgba(255,255,255,.35),rgba(255,255
 .table-wrap{border:1px solid #d8e3f1 !important;border-radius:20px !important;box-shadow:var(--shadow-soft) !important}.table-tools{padding:16px !important;background:#f7faff}.table-tools input,.grammar-search{height:48px;border:1px solid #cfdbeb !important;border-radius:13px !important;background:#fff !important;box-shadow:none !important}.table-tools input:focus,.grammar-search:focus{border-color:#2457d6 !important;box-shadow:0 0 0 4px rgba(36,87,214,.11) !important}thead th{background:#102f68 !important;color:#fff !important;border-bottom:0 !important}tbody tr:nth-child(even){background:#f7faff}tbody tr:hover{background:#eef4ff}.td-kanji{color:#102f68}.row-btn.primary,button.primary{border-color:#2457d6 !important;background:linear-gradient(135deg,#2e68eb,#1746b2) !important;color:#fff !important;box-shadow:0 7px 16px rgba(36,87,214,.18)}
 .grammar-list{gap:15px}.grammar-card{padding:20px !important;border-color:#dbe5f2 !important;border-radius:20px !important;box-shadow:0 8px 24px rgba(23,55,111,.07) !important}.grammar-card:hover{border-color:#abc0e4 !important}.grammar-level{border-color:#c6d7f2 !important;background:#edf4ff !important;color:#2457d6 !important}.grammar-pattern{color:#102f68 !important}.grammar-meaning{color:#d32f3d !important}.grammar-formula{border-left-color:#2457d6 !important;background:linear-gradient(100deg,#eef4ff,#fff) !important}
 .scene{height:min(440px,55vh);min-height:320px}.face{border:1px solid #d6e2f2 !important;border-radius:26px !important;background:linear-gradient(145deg,#fff,#f7faff) !important;box-shadow:0 24px 60px rgba(23,55,111,.14) !important}.kanji{color:#102f68}.meaning{color:#2457d6 !important}.progress>div{background:linear-gradient(90deg,#2457d6,#e53845) !important}.actions button,.nav button{border-radius:13px !important}.good{background:#e9f8f1 !important;color:#14845d !important;border-color:#bce8d5 !important}.bad{background:#fff0f1 !important;color:#c72c3a !important;border-color:#f3c6ca !important}
-.reading-card{padding:20px !important;border-color:#dbe5f2 !important;border-radius:20px !important;box-shadow:0 8px 24px rgba(23,55,111,.07) !important}.reading-word{color:#12346c}.reading-jp{color:#203657}
 button:focus-visible,input:focus-visible{outline:3px solid rgba(36,87,214,.22);outline-offset:2px}
 @media(max-width:900px){#dashboard{padding:19px}.material-grid{grid-template-columns:1fr !important}#deckGrid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.material-card{min-height:190px}}
 @media(max-width:640px){.app{width:100% !important;padding:12px 10px 40px !important}#dashboard{padding:14px;border-radius:22px}.brand-strip{margin-bottom:24px !important}.brand-strip strong::before{display:none}#dashboard h1{font-size:clamp(29px,10vw,42px) !important;white-space:normal !important}.material-card{min-height:180px;padding:20px !important;border-radius:20px !important}#deckGrid{grid-template-columns:1fr !important}.subpage-head{top:5px}.topbar{align-items:stretch}.topright{justify-content:stretch}.topright>*{flex:1}.scene{height:360px}.face{border-radius:21px !important}.actions,.nav{gap:7px}.grammar-card{padding:16px !important}}
@@ -804,7 +797,6 @@ body{min-width:0}
 .topright button:active{transform:translateY(0) scale(.97)}
 #combinePrev,#combinePrevStudy{border-color:#b8c6ff !important;background:#eef1ff !important;color:#354bb8 !important}
 #combineFromFirst,#combineFromFirstStudy{border-color:#f3bdc4 !important;background:#fff0f2 !important;color:#be293a !important}
-#toReading,#toReadingStudy,#readingToTable{border-color:#9edfd9 !important;background:#eafaf8 !important;color:#137c74 !important}
 #onlyUnlearned,#onlyUnlearnedStudy{border-color:#f1d18b !important;background:#fff8e7 !important;color:#9a6400 !important}
 #combinePrev.is-active,#combinePrevStudy.is-active{border-color:#4b61cf !important;background:linear-gradient(135deg,#6077e7,#394db4) !important;color:#fff !important;box-shadow:0 8px 18px rgba(65,84,190,.25)}
 #combineFromFirst.is-active,#combineFromFirstStudy.is-active{border-color:#d63245 !important;background:linear-gradient(135deg,#ea5363,#bd2638) !important;color:#fff !important;box-shadow:0 8px 18px rgba(196,42,60,.24)}
@@ -846,11 +838,16 @@ body{min-width:0}
 .grammar-card.grammar-row:nth-child(even){border-left-color:#d32f3d !important;background:linear-gradient(100deg,#fff7f8,#fff) !important}
 .grammar-card.grammar-row:hover{border-color:#789bd8 !important;transform:translateX(3px)}
 .grammar-card.grammar-row.understood{border:2px solid #8fd3b8 !important;border-left:6px solid #16845c !important;box-shadow:0 8px 22px rgba(22,132,92,.11) !important}
-.reading-card{border:2px solid #c9d8ec !important;border-left:6px solid #2457d6 !important;background:linear-gradient(105deg,#fff,#f6f9ff) !important}.reading-card:nth-child(even){border-left-color:#d32f3d !important;background:linear-gradient(105deg,#fff,#fff6f7) !important}.reading-card:hover{border-color:#789bd8 !important;box-shadow:0 13px 30px rgba(23,55,111,.14) !important}
+.grammar-card.grammar-row.unlearned{border-color:#efb8bf !important;border-left-color:#df3444 !important;background:linear-gradient(100deg,#fff0f2,#fff8f9) !important;box-shadow:0 8px 22px rgba(197,34,49,.09) !important}
 .scene .face{border:2px solid #abc1e5 !important;box-shadow:0 25px 62px rgba(23,55,111,.18),inset 0 5px 0 #2457d6 !important}.scene .face.back{border-color:#efb5bd !important;background:linear-gradient(145deg,#fff,#fff3f5) !important;box-shadow:0 25px 62px rgba(126,30,45,.16),inset 0 5px 0 #d32f3d !important}
 .progress{border:1px solid #c4d3e8;background:#edf2f8 !important;box-shadow:inset 0 1px 3px rgba(16,47,104,.12)}
 .actions button,.nav button,.topright button{border-width:1.5px !important;font-weight:800}.good{border-width:2px !important}.bad{border-width:2px !important}
 .nav{grid-template-columns:repeat(3,minmax(0,1fr))}.next-group{border-color:#8ed3b7 !important;background:linear-gradient(135deg,#eafaf3,#d9f5e8) !important;color:#107451 !important;box-shadow:0 7px 16px rgba(22,132,92,.12)}.next-group:hover{border-color:#16845c !important;background:linear-gradient(135deg,#dff7ec,#c8efdd) !important}
+.previous-group{border-color:#b9c9ee !important;background:linear-gradient(135deg,#f2f5ff,#e7edff) !important;color:#354bb8 !important;box-shadow:0 7px 16px rgba(53,75,184,.1)}.previous-group:hover{border-color:#6077e7 !important;background:#e5ebff !important}
+.table-pagination{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin:18px 0 4px;padding:14px;border:2px solid #c7d6ea;border-radius:18px;background:linear-gradient(110deg,#f5f8ff,#fff 50%,#f1fbf6);box-shadow:0 10px 28px rgba(16,47,104,.1)}.table-pagination button{min-height:54px;width:100%;font-size:14px;font-weight:850}.table-pagination .previous-group{grid-column:1}.table-pagination .next-group{grid-column:2}
+.memory-legend{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px;margin-top:10px;color:#5d6e87;font-size:12px;font-weight:750}.legend-dot{display:inline-block;width:11px;height:11px;border-radius:50%;border:1px solid transparent}.unlearned-dot{background:#ffdfe3;border-color:#e97985}.learned-dot{background:#dcf5e9;border-color:#72c5a1}
+#vocabTable tbody tr.unlearned-row{background:#fff0f2 !important;box-shadow:inset 5px 0 0 #df3444}#vocabTable tbody tr.unlearned-row:hover{background:#ffe3e7 !important}
+#vocabTable tbody tr.learned-row{background:#effaf5 !important;box-shadow:inset 5px 0 0 #16845c}#vocabTable tbody tr.learned-row:hover{background:#dff5ea !important}
 .topbar,.subpage-head{align-items:flex-start}.topright{flex-wrap:wrap;justify-content:flex-end}.topright .stats{align-self:center;min-width:150px}.topright button{min-height:52px;line-height:1.25}.ui-jp{display:block;font-size:1em;font-weight:900}.ui-sub{display:block;margin-top:3px;font-size:.72em;font-weight:650;opacity:.78}
 #vocabTable.shown-cols-4 th,#vocabTable.shown-cols-4 td{font-size:13px}
 #vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:15px;padding-top:13px;padding-bottom:13px}
@@ -858,6 +855,16 @@ body{min-width:0}
 #vocabTable.shown-cols-1 th,#vocabTable.shown-cols-1 td{font-size:clamp(20px,2.5vw,26px);padding-top:19px;padding-bottom:19px}
 #vocabTable.shown-cols-3 .td-kanji{font-size:18px}#vocabTable.shown-cols-2 .td-kanji{font-size:23px}#vocabTable.shown-cols-1 .td-kanji{font-size:clamp(25px,3.6vw,34px)}
 #vocabTable.shown-cols-2 .row-btn,#vocabTable.shown-cols-1 .row-btn{font-size:15px;padding:11px 13px}
+@media(min-width:901px){
+  .topbar{position:sticky;top:10px;z-index:35;display:grid;grid-template-columns:112px minmax(0,1fr);align-items:stretch !important;gap:12px;padding:12px;margin-bottom:18px;border:2px solid #c7d6ea;border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 12px 34px rgba(16,47,104,.13);backdrop-filter:blur(16px)}
+  .topbar>button{width:112px;height:100%;min-height:58px;align-self:stretch}
+  .topright{display:grid !important;grid-template-columns:minmax(175px,.9fr) repeat(3,minmax(150px,1fr));grid-auto-rows:minmax(54px,auto);align-items:stretch;gap:9px;width:100%}
+  .topright .stats{grid-column:1;grid-row:1 / span 3;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0 !important;text-align:left;padding:12px 14px;border:1.5px solid #cbd9ec;background:linear-gradient(145deg,#f8fbff,#eef4ff)}
+  .topright button{width:100%;min-width:0;min-height:54px !important;padding:9px 11px;white-space:normal;line-height:1.25}
+  .subpage-head:has(.topright){display:grid;grid-template-columns:112px minmax(0,1fr);align-items:stretch !important;gap:12px}
+  .subpage-head:has(.topright)>button{width:112px;height:100%;min-height:58px}
+  .actions,.nav{max-width:900px;margin-left:auto;margin-right:auto}
+}
 @media(max-width:640px){
   .brand-logo{width:min(270px,78%);max-height:48px}
   .topbar,.subpage-head{flex-direction:column;align-items:stretch !important}
@@ -866,6 +873,7 @@ body{min-width:0}
   .topright .stats{grid-column:1/-1;min-width:0;text-align:left;padding:4px 2px}
   .topright button{width:100%;min-width:0;white-space:normal;line-height:1.25}
   .nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .table-pagination{gap:8px;margin-top:12px;padding:9px;border-radius:14px}.table-pagination button{min-height:48px;padding:9px 7px;font-size:12px;line-height:1.25}
   #vocabTable.shown-cols-4 th,#vocabTable.shown-cols-4 td{font-size:11px}
   #vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:13px;padding:11px 5px}
   #vocabTable.shown-cols-2 th,#vocabTable.shown-cols-2 td{font-size:16px;padding:14px 7px}
@@ -875,6 +883,7 @@ body{min-width:0}
 }
 @media(max-width:640px){.topright button{min-height:42px}.topright button:hover{transform:none}}
 @media (min-resolution:1.5dppx){.topbar,.topright{flex-wrap:wrap}.table-tools{align-items:stretch}}
+
 </style>
 </head>
 <body>
@@ -1007,43 +1016,34 @@ body{min-width:0}
       <button id="combinePrev">前の課と結合（まえのか / Gabungkan sebelumnya）</button>
       <button id="combineFromFirst">最初から結合（さいしょ / Gabungkan dari awal）</button>
       <button id="onlyUnlearned">○ 未暗記のみ（みあんき / Belum hafal）</button>
-      <button id="toReading">読解（どっかい / Reading）→</button>
       <button class="primary" id="toFlash">暗記カード（あんきカード / Flashcard）→</button>
     </div>
   </div>
   <div class="table-wrap">
     <div class="table-tools">
       <input id="search" type="search" placeholder="漢字・ひらがな・意味を検索 / Cari kanji, hiragana, atau arti...">
+      <div class="memory-legend"><span class="legend-dot unlearned-dot"></span>未暗記（みあんき / Belum hafal） <span class="legend-dot learned-dot"></span>暗記済み（あんきずみ / Sudah hafal）</div>
       <details class="column-picker" id="columnPicker">
         <summary>☷ Atur Kolom</summary>
         <div class="column-menu">
           <label><input type="checkbox" data-toggle-col="kanji" checked> 漢字（かんじ / Kanji）</label>
           <label><input type="checkbox" data-toggle-col="hiragana" checked> 平仮名（ひらがな）</label>
           <label><input type="checkbox" data-toggle-col="meaning" checked> 意味（いみ / Arti）</label>
-          <label><input type="checkbox" data-toggle-col="action" checked> 操作（そうさ / Aksi）</label>
           <div class="column-warning hidden" id="columnWarning" role="status" aria-live="polite">Wajib ada minimal 1 kolom yang ditampilkan.</div>
         </div>
       </details>
     </div>
     <table id="vocabTable">
-      <thead id="tableHead"><tr><th>No.</th><th>Kanji</th><th>Hiragana</th><th>Arti Indonesia</th><th>Aksi</th></tr></thead>
+      <thead id="tableHead"><tr><th>No.</th><th>Kanji</th><th>Hiragana</th><th>Arti Indonesia</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
+  <nav class="table-pagination" aria-label="Navigasi bagian kosakata">
+    <button class="group-nav previous-group" id="tablePrevGroup">← 前の課（まえのか / Bagian sebelumnya）</button>
+    <button class="group-nav next-group" id="tableNextGroup">次の課（つぎのか / Bagian selanjutnya）→</button>
+  </nav>
 </section>
 
-
-<section id="readingView" class="hidden">
-  <div class="topbar">
-    <button id="readingBack">← 戻る（もどる / Kembali）</button>
-    <div class="topright">
-      <div class="stats"><b id="readingTitle"></b><br><span id="readingCount"></span></div>
-      <button id="readingToTable">表（ひょう / Tabel）→</button>
-      <button class="primary" id="readingToFlash">暗記カード（あんき / Flashcard）→</button>
-    </div>
-  </div>
-  <div class="reading-list" id="readingList"></div>
-</section>
 
 <section id="study" class="hidden">
   <div class="topbar">
@@ -1054,7 +1054,6 @@ body{min-width:0}
       <button id="combineFromFirstStudy">最初から結合（さいしょ / Gabungkan dari awal）</button>
       <button id="onlyUnlearnedStudy">○ 未暗記のみ（みあんき / Belum hafal）</button>
       <button class="next-group" id="nextGroupStudy">次の課（つぎのか / Group selanjutnya）⇥</button>
-      <button id="toReadingStudy">読解（どっかい / Reading）→</button>
       <button id="toTable">表（ひょう / Tabel）→</button>
     </div>
   </div>
@@ -1177,6 +1176,50 @@ function improveVocabularyExamples(words){
 }
 
 improveVocabularyExamples(allWords);
+
+/*
+  Susun materi dari yang paling berguna untuk komunikasi sehari-hari dan
+  konteks soal JLPT N3. Penyortiran hanya mengubah urutan belajar; identitas
+  kata tetap sama sehingga progres localStorage lama tidak hilang.
+*/
+function prioritizeN3Vocabulary(words){
+  const essential=[
+    "必要","大切","予定","約束","連絡","相談","確認","準備","説明","注意",
+    "利用","方法","理由","結果","経験","関係","状況","場合","意見","内容",
+    "仕事","会社","会議","受付","予約","変更","中止","遅刻","間に合う","遅れる",
+    "決める","選ぶ","調べる","伝える","手伝う","続ける","始める","終わる","戻る","急ぐ",
+    "困る","間違える","忘れる","覚える","考える","比べる","増える","減る","変わる","直す",
+    "生活","社会","文化","習慣","将来","最近","普通","特別","十分","安全",
+    "危険","無料","有料","便利","不便","可能","無理","重要","正確","簡単",
+    "複雑","必要性","目的","原因","影響","問題","解決","情報","案内","連絡先",
+    "申込","申し込む","参加","欠席","出席","提出","締切","試験","合格","失敗",
+    "成功","練習","復習","予習","授業","質問","答え","文章","意味","発音",
+    "駅","電車","乗る","降りる","乗り換える","出発","到着","交通","切符","料金",
+    "病院","薬","痛い","熱","具合","健康","食事","料理","注文","会計",
+    "家族","友達","相手","自分","皆","一緒","本当","多分","必ず","絶対",
+    "もし","例えば","つまり","しかし","それで","そのため","ところで","実は","確か","特に"
+  ];
+  const essentialRank=new Map(essential.map((word,index)=>[word,index]));
+  const examDaily=/(sehari|kehidupan|kerja|kantor|perusahaan|rapat|sekolah|kelas|belajar|ujian|jadwal|rencana|janji|informasi|pengumuman|petunjuk|penjelasan|alasan|hasil|penyebab|masalah|cara|metode|perjalanan|stasiun|kereta|tiket|rumah sakit|kesehatan|makan|keluarga|teman|waktu|tempat|harga|biaya|perubahan|permohonan|pendaftaran|hubungan|pendapat|keadaan|situasi)/i;
+  return words.map((word,originalIndex)=>{
+    if(essentialRank.has(word.k)) return {word,score:100000-essentialRank.get(word.k),originalIndex};
+    let score=0;
+    if(word.level==="N3-core") score+=2600;
+    if(examDaily.test(word.m||"")) score+=900;
+    if(word.kind==="kotoba") score+=80;
+    return {word,score,originalIndex};
+  }).sort((a,b)=>b.score-a.score||a.originalIndex-b.originalIndex).map(item=>item.word);
+}
+
+const prioritizedWords=prioritizeN3Vocabulary(allWords);
+allWords.splice(0,allWords.length,...prioritizedWords);
+let priorityOffset=0;
+sets.forEach(group=>{
+  const size=group.length;
+  group.splice(0,group.length,...allWords.slice(priorityOffset,priorityOffset+size));
+  priorityOffset+=size;
+});
+
 const $ = id => document.getElementById(id);
 let activeDeckIndex = null; // null = keseluruhan
 let isCombinedMode = false;
@@ -1190,8 +1233,9 @@ let progressData = JSON.parse(localStorage.getItem("n4n3-2589-progress") || "{}"
 const COLUMN_PREFS_KEY="n4n3-table-columns";
 let savedColumnPrefs={};
 try{savedColumnPrefs=JSON.parse(localStorage.getItem(COLUMN_PREFS_KEY)||"{}")}catch(_){savedColumnPrefs={}}
-const tableColumns={kanji:true,hiragana:true,meaning:true,action:true,...savedColumnPrefs};
+const tableColumns={kanji:true,hiragana:true,meaning:true,...savedColumnPrefs};
 delete tableColumns.number;
+delete tableColumns.action;
 if(!Object.values(tableColumns).some(Boolean)) tableColumns.kanji=true;
 localStorage.setItem(COLUMN_PREFS_KEY,JSON.stringify(tableColumns));
 const GLOBAL_PROGRESS_KEY="__globalKnown";
@@ -1199,7 +1243,7 @@ if(!progressData[GLOBAL_PROGRESS_KEY]){
   progressData[GLOBAL_PROGRESS_KEY]=[...new Set(Object.values(progressData).flat().filter(v=>typeof v==="string"))];
   localStorage.setItem("n4n3-2589-progress",JSON.stringify(progressData));
 }
-const viewIds=["dashboard","vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study","readingView"];
+const viewIds=["dashboard","vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study"];
 let currentView="dashboard";
 const navigationHistory=[];
 
@@ -1217,7 +1261,6 @@ function showPreviousPage(){
   if(previous==="dashboard" || previous==="vocabMenu") buildDashboard();
   if(previous==="tableView") renderTable();
   if(previous==="study") renderFlash();
-  if(previous==="readingView") renderReading();
   if(previous==="grammarCombinedView") renderGrammarCombined();
   if(previous==="grammarStudy") renderGrammarFlash();
   if(previous==="grammarGroupMenu") renderGrammarGroups();
@@ -1332,6 +1375,11 @@ function updateCombineButtons(){
   $("combineFromFirst").classList.toggle("hidden", hide);
   $("combineFromFirstStudy").classList.toggle("hidden", hide);
   const hasNextGroup=activeDeckIndex!==null&&activeDeckIndex<sets.length-1;
+  const hasPreviousGroup=activeDeckIndex!==null&&activeDeckIndex>0;
+  $("tablePrevGroup").classList.toggle("hidden",!hasPreviousGroup);
+  $("tableNextGroup").classList.toggle("hidden",!hasNextGroup);
+  if(hasPreviousGroup) $("tablePrevGroup").textContent=`← 前の課 ${activeDeckIndex}（まえのか / Bagian sebelumnya）`;
+  if(hasNextGroup) $("tableNextGroup").textContent=`次の課 ${activeDeckIndex+2}（つぎのか / Bagian selanjutnya）→`;
   $("nextGroupStudy").classList.toggle("hidden",!hasNextGroup);
   if(hasNextGroup) $("nextGroupStudy").textContent=`次の暗記カード ${activeDeckIndex+2}（つぎ / Group selanjutnya）⇥`;
 
@@ -1372,6 +1420,7 @@ function openTable(i){
 
 function renderTable(){
   const q=$("search").value.trim().toLowerCase();
+  const learned=knownSet();
   let rows=currentDeck.map((v,localIndex)=>({v,localIndex}));
   if(q) rows=rows.filter(({v})=>
     v.k.toLowerCase().includes(q)||
@@ -1379,17 +1428,17 @@ function renderTable(){
     v.m.toLowerCase().includes(q)
   );
 
-  $("tableHead").innerHTML=`<tr><th data-col="number">番号<br><small>ばんごう / No.</small></th><th data-col="kanji">漢字<br><small>かんじ / Kanji</small></th><th data-col="hiragana">平仮名<br><small>ひらがな</small></th><th data-col="meaning">意味<br><small>いみ / Arti</small></th><th data-col="action">操作<br><small>そうさ / Aksi</small></th></tr>`;
+  $("tableHead").innerHTML=`<tr><th data-col="number">番号<br><small>ばんごう / No.</small></th><th data-col="kanji">漢字<br><small>かんじ / Kanji</small></th><th data-col="hiragana">平仮名<br><small>ひらがな</small></th><th data-col="meaning">意味<br><small>いみ / Arti</small></th></tr>`;
 
   const tb=$("tbody"); tb.innerHTML="";
   rows.forEach(({v,localIndex},i)=>{
     const tr=document.createElement("tr");
-    tr.innerHTML=`<td data-col="number">${i+1}</td><td data-col="kanji" class="td-kanji">${v.k}</td><td data-col="hiragana">${v.h}</td><td data-col="meaning">${v.m}</td><td data-col="action"><button class="row-btn primary" data-i="${localIndex}">Flashcard</button></td>`;
+    tr.className=learned.has(v.k)?"learned-row":"unlearned-row";
+    tr.innerHTML=`<td data-col="number">${i+1}</td><td data-col="kanji" class="td-kanji">${v.k}</td><td data-col="hiragana">${v.h}</td><td data-col="meaning">${v.m}</td>`;
     tb.appendChild(tr);
   });
   applyColumnVisibility();
   $("tableCount").textContent=`${rows.length} kosakata`;
-  tb.querySelectorAll("[data-i]").forEach(btn=>btn.onclick=()=>openFlash(Number(btn.dataset.i)));
 }
 
 function applyColumnVisibility(){
@@ -1441,7 +1490,6 @@ function renderFlash(){
 function showDashboard(){
   $("tableView").classList.add("hidden");
   $("study").classList.add("hidden");
-  $("readingView").classList.add("hidden");
   $("dashboard").classList.remove("hidden");
   buildDashboard();
 }
@@ -1489,6 +1537,19 @@ function next(){slideNavigate(1)}
 
 $("allDeck").onclick=()=>openTable(null);
 $("tableBack").onclick=showPreviousPage;
+function moveTableGroup(direction){
+  if(activeDeckIndex===null)return;
+  const target=activeDeckIndex+direction;
+  if(target<0||target>=sets.length)return;
+  selectDeck(target);
+  index=0;
+  $("tableTitle").textContent=deckName();
+  $("search").value="";
+  renderTable();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("tablePrevGroup").onclick=()=>moveTableGroup(-1);
+$("tableNextGroup").onclick=()=>moveTableGroup(1);
 $("studyBack").onclick=showPreviousPage;
 $("toFlash").onclick=()=>openFlash(0);
 $("toTable").onclick=()=>{
@@ -1619,56 +1680,6 @@ document.addEventListener("keydown",e=>{
     if(e.key==="ArrowLeft"){e.preventDefault();$("prev").click()}
   }
 });
-
-function openReading(){
-  noteNavigation("readingView");
-  $("dashboard").classList.add("hidden");
-  $("tableView").classList.add("hidden");
-  $("study").classList.add("hidden");
-  $("readingView").classList.remove("hidden");
-  $("readingTitle").textContent = deckName();
-  renderReading();
-}
-
-function renderReading(){
-  const list = $("readingList");
-  list.innerHTML = "";
-  currentDeck.forEach((v,i)=>{
-    const card = document.createElement("div");
-    card.className = "reading-card";
-    card.innerHTML = `
-      <div class="reading-word">${i+1}. ${v.k}（${v.h}）</div>
-      <div class="reading-jp">${v.read || ""}</div>
-      <div class="reading-r">${v.readr || ""}</div>
-      <div class="reading-m">${v.readm || ""}</div>
-    `;
-    list.appendChild(card);
-  });
-  $("readingCount").textContent = `${currentDeck.length} contoh kalimat`;
-}
-
-$("toReading").onclick = openReading;
-$("toReadingStudy").onclick = openReading;
-$("readingBack").onclick = showPreviousPage;
-
-$("readingToTable").onclick = ()=>{
-  noteNavigation("tableView");
-  $("readingView").classList.add("hidden");
-  $("tableView").classList.remove("hidden");
-  $("tableTitle").textContent = deckName();
-  $("search").value = "";
-  renderTable();
-};
-
-$("readingToFlash").onclick = ()=>{
-  noteNavigation("study");
-  $("readingView").classList.add("hidden");
-  $("study").classList.remove("hidden");
-  $("studyTitle").textContent = deckName();
-  index = 0;
-  renderFlash();
-};
-
 
 const grammarN4=[
 {p:"～と思います",formula:"Kata kerja bentuk biasa + と思います<br>い-adjective + と思います<br>な-adjective / Kata benda + だ + と思います",easy:"Pakai pola ini saat kamu ingin mengatakan “saya pikir...” atau menyampaikan pendapat sendiri.",m:"saya pikir",e:"Menyampaikan pendapat atau perkiraan.",j:"明日は雨が降ると思います。",r:"あしたは あめが ふると おもいます。",i:"Saya pikir besok akan hujan."},
@@ -2118,7 +2129,7 @@ function renderGrammarCombined(){
     const c=document.createElement("div");
     const checked=Boolean(grammarUnderstood[g.p]);
     const patternReading=grammarPatternReadings[g.p];
-    c.className=`grammar-card grammar-row${checked?" understood":""}`;
+    c.className=`grammar-card grammar-row${checked?" understood":" unlearned"}`;
     c.innerHTML=`<div class="grammar-number">${idx+1}</div>
       <div class="grammar-summary"><div class="grammar-pattern">${g.p}${patternReading?`<span class="grammar-pattern-reading">（${patternReading}）</span>`:""}</div><div class="grammar-meaning">${g.m}</div></div>
       <label class="grammar-check"><input type="checkbox" data-grammar-key="${g.p}" ${checked?"checked":""}> <span>${checked?"理解済み（りかいずみ / Paham）":"理解を記録（りかい / Tandai paham）"}</span></label>`;
@@ -2290,7 +2301,7 @@ document.addEventListener("keydown",e=>{
 });
 
 function showMainDashboard(){
-  ["vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study","readingView"].forEach(id=>{const e=$(id);if(e)e.classList.add("hidden")});
+  ["vocabMenu","grammarGroupMenu","grammarCombinedView","grammarStudy","tableView","study"].forEach(id=>{const e=$(id);if(e)e.classList.add("hidden")});
   $("dashboard").classList.remove("hidden");
 }
 
