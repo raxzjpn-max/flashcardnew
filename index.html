@@ -906,6 +906,25 @@ body{min-width:0}
   .topright .stats{grid-column:auto;grid-row:auto;flex:1;align-self:center;min-width:0 !important;min-height:44px;padding:7px 12px}
   .topright .feature-menu{flex:0 0 auto;align-self:center}
 }
+#vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:clamp(20px,2.5vw,26px) !important;padding-top:19px !important;padding-bottom:19px !important}
+#vocabTable.shown-cols-3 .td-kanji{font-size:clamp(25px,3.6vw,34px) !important}
+@media(max-width:640px){
+  #vocabTable.shown-cols-3 th,#vocabTable.shown-cols-3 td{font-size:clamp(18px,5vw,23px) !important;padding:17px 9px !important}
+  #vocabTable.shown-cols-3 .td-kanji{font-size:clamp(24px,7vw,31px) !important}
+}
+html{background:#0b1f4d}
+body{background:radial-gradient(circle at 12% 8%,rgba(239,68,82,.92),transparent 31%),radial-gradient(circle at 88% 15%,rgba(52,112,255,.95),transparent 38%),radial-gradient(circle at 50% 100%,rgba(176,28,52,.85),transparent 45%),linear-gradient(135deg,#102d70 0%,#174bb7 48%,#7f1735 100%) fixed !important}
+body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08)),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,32px 32px,32px 32px}
+.fullscreen-toggle{border-color:#94aee0 !important;background:linear-gradient(135deg,#eef4ff,#e2ebff) !important;color:#173b7a !important}
+.fullscreen-toggle.is-active{border-color:#efabb4 !important;background:linear-gradient(135deg,#fff0f2,#ffe2e6) !important;color:#b42335 !important}
+.dashboard-menu-row{display:flex;justify-content:flex-end;margin:-18px 0 18px}
+@media(max-width:640px){.dashboard-menu-row{margin:-12px 0 16px}}
+.learning-overview{position:relative;overflow:hidden;margin-top:22px;padding:21px;border:2px solid #c6d6ed;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(238,244,255,.96) 56%,rgba(255,239,242,.96));box-shadow:0 16px 38px rgba(16,47,104,.13)}
+.learning-overview::after{content:"N3";position:absolute;right:-10px;bottom:-34px;color:rgba(36,87,214,.055);font-size:150px;font-weight:950;line-height:1;pointer-events:none}
+.learning-overview-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.overview-kicker{display:block;margin-bottom:3px;color:#2457d6;font-size:11px;font-weight:900;letter-spacing:.16em}.learning-overview h2{margin:0;color:#102f68;font-size:clamp(21px,3vw,28px)}.overview-badge{padding:7px 11px;border:1px solid #b7dfcc;border-radius:999px;background:#eaf8f1;color:#147452;font-size:12px;font-weight:800;white-space:nowrap}
+.overview-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:12px}.overview-card{display:grid;grid-template-columns:46px minmax(0,1fr);align-items:center;gap:11px;min-height:112px;padding:15px;border:1.5px solid #ccdaed;border-radius:17px;background:rgba(255,255,255,.9);box-shadow:0 7px 18px rgba(16,47,104,.07)}.overview-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;color:#fff;font-size:21px;font-weight:900;box-shadow:0 8px 18px rgba(16,47,104,.18)}.overview-vocab .overview-icon{background:linear-gradient(135deg,#3470ee,#1746b2)}.overview-grammar .overview-icon{background:linear-gradient(135deg,#ef5260,#b81f30)}.overview-focus .overview-icon{background:linear-gradient(135deg,#f2ae26,#d47a0c)}.overview-copy{min-width:0}.overview-copy span{display:block;margin-bottom:4px;color:#6a7a91;font-size:12px;font-weight:750}.overview-copy strong{display:block;color:#173b7a;font-size:17px;line-height:1.25}.overview-progress{grid-column:1/-1;height:7px;overflow:hidden;border-radius:999px;background:#e4ebf5}.overview-progress i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#2457d6,#df3444);transition:width .45s ease}.overview-focus{grid-template-columns:46px minmax(0,1fr)}.overview-focus small{grid-column:1/-1;color:#718097;font-size:12px;line-height:1.4}
+@media(max-width:900px){.overview-grid{grid-template-columns:1fr 1fr}.overview-focus{grid-column:1/-1}}
+@media(max-width:640px){.learning-overview{margin-top:16px;padding:15px;border-radius:19px}.learning-overview-head{align-items:flex-start}.overview-badge{font-size:10px}.overview-grid{grid-template-columns:1fr}.overview-focus{grid-column:auto}.overview-card{min-height:100px}.learning-overview::after{font-size:105px}}
 </style>
 </head>
 <body>
@@ -926,6 +945,12 @@ body{min-width:0}
 
   <h1>JLPT N3 By RyzenMZKSHI <span class="flag-pair" role="img" aria-label="Bendera Jepang dan Indonesia"><img class="flag-icon" alt="Jepang" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23fff'/%3E%3Ccircle cx='450' cy='300' r='180' fill='%23bc002d'/%3E%3C/svg%3E"><img class="flag-icon" alt="Indonesia" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cpath fill='%23e70011' d='M0 0h900v300H0z'/%3E%3Cpath fill='%23fff' d='M0 300h900v300H0z'/%3E%3C/svg%3E"></span></h1>
   <div class="sub">Pilih materi yang ingin dipelajari.</div>
+  <div class="dashboard-menu-row">
+    <details class="feature-menu">
+      <summary>☰ Menu Fitur</summary>
+      <div class="feature-menu-panel"><button class="fullscreen-toggle">⛶ Layar Penuh</button></div>
+    </details>
+  </div>
 
   <div class="material-grid">
     <div class="material-card material-vocab" id="openVocabMenu">
@@ -940,6 +965,30 @@ body{min-width:0}
       <div class="material-meta">Materi inti • Progres tersimpan</div>
     </div>
   </div>
+
+  <section class="learning-overview" aria-labelledby="learningOverviewTitle">
+    <div class="learning-overview-head">
+      <div><span class="overview-kicker">PROGRES BELAJAR</span><h2 id="learningOverviewTitle">Ringkasan hari ini</h2></div>
+      <span class="overview-badge">Tersimpan otomatis</span>
+    </div>
+    <div class="overview-grid">
+      <article class="overview-card overview-vocab">
+        <div class="overview-icon">語</div>
+        <div class="overview-copy"><span>Kosakata dikuasai</span><strong id="dashboardVocabValue">0 / 2.589</strong></div>
+        <div class="overview-progress"><i id="dashboardVocabBar"></i></div>
+      </article>
+      <article class="overview-card overview-grammar">
+        <div class="overview-icon">文</div>
+        <div class="overview-copy"><span>Grammar dipahami</span><strong id="dashboardGrammarValue">0 / 0</strong></div>
+        <div class="overview-progress"><i id="dashboardGrammarBar"></i></div>
+      </article>
+      <article class="overview-card overview-focus">
+        <div class="overview-icon">✦</div>
+        <div class="overview-copy"><span>Saran belajar</span><strong id="dashboardFocusText">Mulai dengan 10 kartu hari ini.</strong></div>
+        <small>Konsisten sedikit demi sedikit lebih efektif.</small>
+      </article>
+    </div>
+  </section>
 </section>
 
 <section id="vocabMenu" class="hidden">
@@ -980,6 +1029,7 @@ body{min-width:0}
       <details class="feature-menu">
         <summary>☰ Menu Fitur</summary>
         <div class="feature-menu-panel">
+          <button class="fullscreen-toggle">⛶ Layar Penuh</button>
           <button id="grammarCombinePrev">Gabungkan sebelumnya</button>
           <button id="grammarCombineFirst">Gabungkan dari awal</button>
           <button id="grammarOnlyUnlearned">○ Belum paham</button>
@@ -1000,6 +1050,7 @@ body{min-width:0}
       <details class="feature-menu">
         <summary>☰ Menu Fitur</summary>
         <div class="feature-menu-panel">
+          <button class="fullscreen-toggle">⛶ Layar Penuh</button>
           <button id="grammarCombinePrevStudy">Gabungkan sebelumnya</button>
           <button id="grammarCombineFirstStudy">Gabungkan dari awal</button>
           <button id="grammarOnlyUnlearnedStudy">○ Belum paham</button>
@@ -1046,6 +1097,7 @@ body{min-width:0}
       <details class="feature-menu">
         <summary>☰ Menu Fitur</summary>
         <div class="feature-menu-panel">
+          <button class="fullscreen-toggle">⛶ Layar Penuh</button>
           <button id="combinePrev">Gabungkan sebelumnya</button>
           <button id="combineFromFirst">Gabungkan dari awal</button>
           <button id="onlyUnlearned">○ Belum hafal</button>
@@ -1101,6 +1153,7 @@ body{min-width:0}
       <details class="feature-menu">
         <summary>☰ Menu Fitur</summary>
         <div class="feature-menu-panel">
+          <button class="fullscreen-toggle">⛶ Layar Penuh</button>
           <button id="combinePrevStudy">Gabungkan sebelumnya</button>
           <button id="combineFromFirstStudy">Gabungkan dari awal</button>
           <button id="onlyUnlearnedStudy">○ Belum hafal</button>
@@ -1348,6 +1401,19 @@ function buildDashboard(){
   });
   const allDone=progressCount("all");
   $("allDeck").querySelector("span").textContent=`Lihat semua ${allWords.length} kosakata • Hafal ${allDone}/${allWords.length}`;
+  const vocabPercent=Math.round((allDone/allWords.length)*100);
+  $("dashboardVocabValue").textContent=`${allDone.toLocaleString("id-ID")} / ${allWords.length.toLocaleString("id-ID")} (${vocabPercent}%)`;
+  $("dashboardVocabBar").style.width=`${vocabPercent}%`;
+  const grammarItems=prioritizedN3Grammar();
+  const grammarDone=grammarItems.filter(item=>grammarUnderstood[item.p]).length;
+  const grammarPercent=grammarItems.length?Math.round((grammarDone/grammarItems.length)*100):0;
+  $("dashboardGrammarValue").textContent=`${grammarDone} / ${grammarItems.length} (${grammarPercent}%)`;
+  $("dashboardGrammarBar").style.width=`${grammarPercent}%`;
+  $("dashboardFocusText").textContent=allDone===0&&grammarDone===0
+    ? "Mulai dengan 10 kartu hari ini."
+    : vocabPercent<=grammarPercent
+      ? "Lanjutkan kosakata yang belum hafal."
+      : "Seimbangkan latihan dengan grammar.";
 }
 
 function selectDeck(i){
@@ -2479,6 +2545,32 @@ $("vocabMenuBack").onclick=showPreviousPage;
 $("grammarGroupBack").onclick=showPreviousPage;
 $("grammarCombinedBack").onclick=showPreviousPage;
 $("grammarCombinedSearch").addEventListener("input",renderGrammarCombined);
+
+function fullscreenActive(){return Boolean(document.fullscreenElement||document.webkitFullscreenElement)}
+function updateFullscreenButtons(){
+  const active=fullscreenActive();
+  document.querySelectorAll(".fullscreen-toggle").forEach(button=>{
+    button.textContent=active?"⛶ Keluar Layar Penuh":"⛶ Layar Penuh";
+    button.classList.toggle("is-active",active);
+    button.setAttribute("aria-pressed",String(active));
+  });
+}
+async function toggleFullscreen(){
+  try{
+    if(fullscreenActive()){
+      const exit=document.exitFullscreen||document.webkitExitFullscreen;
+      if(exit)await exit.call(document);
+    }else{
+      const enter=document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen;
+      if(enter)await enter.call(document.documentElement);
+    }
+  }catch(_){/* Browser dapat menolak layar penuh di file lokal tertentu. */}
+  updateFullscreenButtons();
+}
+document.querySelectorAll(".fullscreen-toggle").forEach(button=>button.addEventListener("click",toggleFullscreen));
+document.addEventListener("fullscreenchange",updateFullscreenButtons);
+document.addEventListener("webkitfullscreenchange",updateFullscreenButtons);
+updateFullscreenButtons();
 
 document.addEventListener("click",event=>{
   document.querySelectorAll(".feature-menu[open]").forEach(menu=>{
