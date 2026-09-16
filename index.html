@@ -939,7 +939,25 @@ body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08
   #deckGrid .deck,#grammarGroupGrid .deck,.grammar-list .grammar-card{content-visibility:auto;contain-intrinsic-size:auto 92px}
   #vocabTable tbody tr{content-visibility:auto;contain-intrinsic-size:auto 64px}
 }
+.vocab-example-front,.vocab-example-back{width:min(92%,760px);margin-top:14px;padding:12px 15px;border-radius:15px;text-align:center;overflow:auto;overscroll-behavior:contain}
+.vocab-example-front{max-height:128px;border:1px solid #c8d8ef;background:linear-gradient(135deg,#f5f9ff,#edf4ff)}
+.vocab-example-back{max-height:150px;border:1px solid #efc3c9;background:linear-gradient(135deg,#fff7f8,#fff0f2)}
+.vocab-example-jp{color:#173b7a;font-size:clamp(16px,2.1vw,21px);font-weight:800;line-height:1.55}
+.vocab-example-reading{color:#526987;font-size:clamp(13px,1.7vw,16px);font-weight:700;line-height:1.5}
+.vocab-example-meaning{margin-top:7px;padding-top:7px;border-top:1px solid #efc9ce;color:#9f2232;font-size:clamp(14px,1.8vw,17px);font-weight:750;line-height:1.5}
+#study .face{padding:22px}#study .scene{height:min(520px,66vh);min-height:400px}
+@media(max-width:640px){#study .scene{height:460px;min-height:430px}#study .face{padding:18px 13px}.vocab-example-front,.vocab-example-back{width:96%;margin-top:10px;padding:10px 11px}.vocab-example-front{max-height:145px}.vocab-example-back{max-height:175px}.vocab-example-jp{font-size:15px}.vocab-example-reading,.vocab-example-meaning{font-size:13px}}
+.vocab-preview-modal{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:20px;background:rgba(7,20,48,.48);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:previewFade .18s ease}
+.vocab-preview-card{position:relative;width:min(92vw,520px);padding:34px 30px 27px;border:2px solid rgba(255,255,255,.9);border-radius:27px;background:linear-gradient(145deg,#fff,#f2f7ff 62%,#fff1f3);box-shadow:0 30px 80px rgba(3,14,38,.38);animation:previewRise .22s ease}
+.vocab-preview-close{position:absolute;top:13px;right:13px;display:grid;place-items:center;width:38px;height:38px;min-height:0 !important;padding:0;border:1px solid #d5dfed;border-radius:12px !important;background:#fff;color:#5d6f89;font-size:25px;line-height:1;cursor:pointer}
+.vocab-preview-label{display:block;color:#2457d6;font-size:12px;font-weight:900;letter-spacing:.13em;text-align:center;text-transform:uppercase}.vocab-preview-kanji{margin:16px 0 18px;color:#102f68;font-size:clamp(52px,10vw,88px);font-weight:950;line-height:1.1;text-align:center;overflow-wrap:anywhere}.vocab-preview-divider{height:3px;margin-bottom:18px;border-radius:99px;background:linear-gradient(90deg,#2457d6,#df3444)}.vocab-preview-row{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:start;gap:12px;padding:12px 4px;border-bottom:1px solid #dde5f0}.vocab-preview-row span{color:#708099;font-size:13px;font-weight:800}.vocab-preview-row strong{color:#1b365f;font-size:clamp(18px,3vw,23px);line-height:1.4;overflow-wrap:anywhere}.vocab-preview-card small{display:block;margin-top:17px;color:#75849a;text-align:center}.modal-open{overflow:hidden !important}#vocabTable tbody tr{cursor:pointer}#vocabTable tbody tr:focus-visible{outline:3px solid #2457d6;outline-offset:-3px}
+@keyframes previewFade{from{opacity:0}to{opacity:1}}@keyframes previewRise{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:640px){.vocab-preview-modal{padding:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.vocab-preview-card{padding:30px 19px 23px;border-radius:22px}.vocab-preview-row{grid-template-columns:76px minmax(0,1fr)}}
+.writing-open{width:100%;margin-top:18px;min-height:48px}.writing-modal{position:fixed;z-index:1100;inset:0;display:grid;place-items:center;padding:18px;background:rgba(7,20,48,.58);backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);animation:previewFade .18s ease}.writing-card{position:relative;width:min(94vw,650px);max-height:94vh;overflow:auto;padding:31px 28px 24px;border:2px solid rgba(255,255,255,.92);border-radius:27px;background:linear-gradient(145deg,#fff,#eef4ff 55%,#fff1f3);box-shadow:0 32px 90px rgba(3,14,38,.42);text-align:center;animation:previewRise .22s ease}.writing-card h2{margin:7px 0 8px;color:#102f68;font-size:clamp(24px,4vw,34px)}.writing-word{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:8px}.writing-word strong{color:#b42335;font-size:clamp(23px,4vw,32px)}.writing-word span{color:#64748b;font-weight:750}.writing-counter{color:#2457d6;font-size:13px;font-weight:850}.writing-canvas{display:grid;place-items:center;width:min(290px,74vw);aspect-ratio:1;margin:12px auto;border:2px solid #b9cbea;border-radius:20px;background-color:#fff;background-image:linear-gradient(rgba(36,87,214,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(36,87,214,.12) 1px,transparent 1px),linear-gradient(45deg,transparent 49.6%,rgba(223,52,68,.12) 50%,transparent 50.4%),linear-gradient(-45deg,transparent 49.6%,rgba(223,52,68,.12) 50%,transparent 50.4%);background-size:50% 50%,50% 50%,100% 100%,100% 100%;overflow:hidden}.writing-canvas svg{display:block}.writing-status{min-height:22px;margin:8px 0;color:#5e708a;font-size:13px;font-weight:750}.writing-controls{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:8px;margin-top:12px}.writing-controls button{min-height:47px;padding:9px 10px;font-size:13px}.writing-card>small{display:block;margin-top:13px;color:#718097}.writing-error{color:#b42335 !important}
+@media(max-width:640px){.writing-modal{padding:10px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.writing-card{padding:28px 14px 19px;border-radius:21px}.writing-controls{grid-template-columns:1fr 1fr}.writing-controls #writingReplay{grid-column:1/-1;grid-row:1}.writing-word{flex-direction:column;align-items:center;gap:2px}.writing-canvas{width:min(250px,72vw)}}
+.writing-canvas{touch-action:pan-y;cursor:grab;transition:transform .16s ease,opacity .16s ease}.writing-canvas.dragging{cursor:grabbing;user-select:none}.writing-canvas.switching{transform:scale(.96);opacity:.35}
 </style>
+<script defer src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7.3/dist/hanzi-writer.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -1146,6 +1164,37 @@ body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08
   </nav>
 </section>
 
+<div class="vocab-preview-modal hidden" id="vocabPreviewModal" role="dialog" aria-modal="true" aria-labelledby="vocabPreviewKanji">
+  <div class="vocab-preview-card">
+    <button class="vocab-preview-close" id="vocabPreviewClose" aria-label="Tutup kartu">×</button>
+    <span class="vocab-preview-label">Pratinjau Kosakata</span>
+    <div class="vocab-preview-kanji" id="vocabPreviewKanji"></div>
+    <div class="vocab-preview-divider"></div>
+    <div class="vocab-preview-row"><span>Hiragana</span><strong id="vocabPreviewHiragana"></strong></div>
+    <div class="vocab-preview-row"><span>Arti</span><strong id="vocabPreviewMeaning"></strong></div>
+    <button class="primary writing-open" id="vocabWritingOpen">✍ Cara Tulis Kanji</button>
+    <small>Ketuk area luar atau tekan Esc untuk menutup.</small>
+  </div>
+</div>
+
+<div class="writing-modal hidden" id="writingModal" role="dialog" aria-modal="true" aria-labelledby="writingTitle">
+  <div class="writing-card">
+    <button class="vocab-preview-close" id="writingClose" aria-label="Tutup cara tulis">×</button>
+    <span class="vocab-preview-label">TUTOR MENULIS</span>
+    <h2 id="writingTitle">Cara Tulis Kanji</h2>
+    <div class="writing-word"><strong id="writingWord"></strong><span id="writingReading"></span></div>
+    <div class="writing-counter" id="writingCounter"></div>
+    <div class="writing-canvas" id="writingCanvas"></div>
+    <div class="writing-status" id="writingStatus" aria-live="polite">Menyiapkan animasi...</div>
+    <div class="writing-controls">
+      <button id="writingPrev">← Kanji sebelumnya</button>
+      <button class="primary" id="writingReplay">↻ Ulangi gerakan</button>
+      <button id="writingNext">Kanji berikutnya →</button>
+    </div>
+    <small>Animasi mengulang otomatis. Geser kiri atau kanan untuk berpindah Kanji.</small>
+  </div>
+</div>
+
 
 <section id="quizView" class="hidden">
   <div class="topbar"><button id="quizBack">← Kembali</button><div class="stats"><b>Kuis Kosakata</b><br><span id="quizHeaderStatus">Siap berlatih</span></div></div>
@@ -1172,6 +1221,7 @@ body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08
           <button id="combineFromFirstStudy">Gabungkan dari awal</button>
           <button id="onlyUnlearnedStudy">○ Belum hafal</button>
           <button class="next-group" id="nextGroupStudy">Bagian selanjutnya ⇥</button>
+          <button id="toWritingStudy">✍ Cara Tulis Kanji</button>
           <button class="quiz-button" id="toQuizStudy">Kuis →</button>
           <button id="toTable">Tabel →</button>
         </div>
@@ -1184,12 +1234,19 @@ body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08
       <section class="face front">
         <div class="label">Apa arti kosakata ini?</div>
         <div class="kanji" id="kanji"></div>
+        <div class="vocab-example-front" id="vocabExampleFront">
+          <div class="vocab-example-jp" id="vocabExampleJapanese"></div>
+        </div>
         <div class="hint">Ketuk kartu untuk melihat jawaban</div>
       </section>
       <section class="face back">
         <div class="label">Jawaban</div>
         <div class="hira" id="hira"></div>
         <div class="meaning" id="meaning"></div>
+        <div class="vocab-example-back">
+          <div class="vocab-example-reading" id="vocabExampleReading"></div>
+          <div class="vocab-example-meaning" id="vocabExampleMeaning"></div>
+        </div>
         <div class="hint">Ketuk lagi untuk membalik</div>
       </section>
     </div>
@@ -1267,11 +1324,12 @@ function improveVocabularyExamples(words){
   ];
   const generic = s => !s || /授業で「.+」の意味と使い方|日常生活で「?.+」?(?:という言葉|を使う場面)|について勉強しています|日常生活でもよく使われます|駅で.+を確認してから出発|最近、.+についてよく考える|必要な.+を事前に準備|仕事では.+がとても重要|について、先生が詳しく説明|という言葉の(?:意味を例文|自然な使い方|使い方を確認|会話で使える場面)/.test(s);
   const stableHash = text => [...text].reduce((hash,char)=>((hash*31)+char.codePointAt(0))>>>0,2166136261);
+  const containsTerm = (sentence,v) => Boolean(sentence&&(sentence.includes(v.k)||sentence.includes(v.h)));
   const used = new Set();
 
   words.forEach((v,index)=>{
-    const naturalRead = !generic(v.read) ? {jp:v.read,jr:v.readr||"",id:v.readm||""} : null;
-    const naturalExample = !generic(v.ex) ? {jp:v.ex,jr:v.exr||"",id:v.exm||""} : null;
+    const naturalRead = !generic(v.read)&&containsTerm(v.read,v) ? {jp:v.read,jr:v.readr||"",id:v.readm||""} : null;
+    const naturalExample = !generic(v.ex)&&containsTerm(v.ex,v) ? {jp:v.ex,jr:v.exr||"",id:v.exm||""} : null;
     let chosen = naturalRead || naturalExample;
 
     if(!chosen || used.has(chosen.jp)){
@@ -1283,8 +1341,8 @@ function improveVocabularyExamples(words){
       chosen = frame(v,scene,moment,meaning);
     }
 
-    // Jaminan terakhir bila data sumber ternyata mempunyai entri kembar.
-    if(used.has(chosen.jp)){
+    // Jaminan terakhir: ulangi awalan sampai setiap kalimat benar-benar unik.
+    while(used.has(chosen.jp)){
       chosen.jp = `別の場面では、${chosen.jp}`;
       chosen.jr = `べつの ばめんでは、${chosen.jr}`;
       chosen.id = `Dalam situasi lain, ${chosen.id.charAt(0).toLowerCase()+chosen.id.slice(1)}`;
@@ -1553,6 +1611,121 @@ function openTable(i){
   renderTable();
 }
 
+let vocabPreviewReturnFocus=null,vocabPreviewWord=null;
+const kanjiCharacters=text=>[...text].filter(char=>/[一-龯]/.test(char));
+function openVocabPreview(word,trigger){
+  vocabPreviewReturnFocus=trigger||document.activeElement;
+  vocabPreviewWord=word;
+  $("vocabPreviewKanji").textContent=word.k;
+  $("vocabPreviewHiragana").textContent=word.h;
+  $("vocabPreviewMeaning").textContent=word.m;
+  $("vocabWritingOpen").classList.toggle("hidden",kanjiCharacters(word.k).length===0);
+  $("vocabPreviewModal").classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  $("vocabPreviewClose").focus({preventScroll:true});
+}
+function closeVocabPreview(){
+  if($("vocabPreviewModal").classList.contains("hidden"))return;
+  $("vocabPreviewModal").classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  vocabPreviewReturnFocus?.focus?.({preventScroll:true});
+}
+$("vocabPreviewClose").onclick=closeVocabPreview;
+$("vocabPreviewModal").addEventListener("click",event=>{if(event.target===$("vocabPreviewModal"))closeVocabPreview()});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!$("vocabPreviewModal").classList.contains("hidden")){event.preventDefault();closeVocabPreview()}});
+
+let writingChars=[],writingIndex=0,writingWriter=null,writingAnimationToken=0,writingSwitching=false;
+function waitForHanziWriter(){
+  if(window.HanziWriter)return Promise.resolve(window.HanziWriter);
+  return new Promise((resolve,reject)=>{
+    let attempts=0;
+    const timer=setInterval(()=>{
+      if(window.HanziWriter){clearInterval(timer);resolve(window.HanziWriter)}
+      else if(++attempts>60){clearInterval(timer);reject(new Error("library-timeout"))}
+    },100);
+  });
+}
+function japaneseStrokeLoader(char,onLoad,onError){
+  fetch(`https://cdn.jsdelivr.net/npm/hanzi-writer-data-jp@0/${encodeURIComponent(char)}.json`)
+    .then(response=>{if(!response.ok)throw new Error("data-not-found");return response.json()})
+    .then(onLoad).catch(onError);
+}
+async function renderWritingCharacter(){
+  const token=++writingAnimationToken;
+  const target=$("writingCanvas"),char=writingChars[writingIndex];
+  try{writingWriter?.pauseAnimation?.()}catch(_){}
+  writingWriter=null;
+  target.innerHTML="";
+  $("writingCounter").textContent=`Kanji ${writingIndex+1} dari ${writingChars.length} • ${char}`;
+  $("writingStatus").className="writing-status";
+  $("writingStatus").textContent="Memuat urutan goresan...";
+  $("writingPrev").disabled=writingIndex===0;
+  $("writingNext").disabled=writingIndex===writingChars.length-1;
+  try{
+    const Writer=await waitForHanziWriter();
+    if(token!==writingAnimationToken)return;
+    const size=Math.min(270,Math.max(190,target.clientWidth-4));
+    writingWriter=Writer.create(target,char,{
+      width:size,height:size,padding:15,showOutline:true,showCharacter:false,
+      strokeColor:"#c52231",outlineColor:"#c5d3e8",strokeAnimationSpeed:1,
+      delayBetweenStrokes:340,delayBetweenLoops:1100,charDataLoader:japaneseStrokeLoader,
+      onLoadCharDataSuccess:()=>{
+        if(token!==writingAnimationToken)return;
+        $("writingStatus").textContent=writingChars.length>1?"Animasi mengulang • Geser untuk melihat Kanji lain.":"Animasi urutan goresan mengulang otomatis.";
+        writingWriter.loopCharacterAnimation();
+      },
+      onLoadCharDataError:()=>{
+        if(token!==writingAnimationToken)return;
+        $("writingStatus").className="writing-status writing-error";
+        $("writingStatus").textContent="Data goresan tidak tersedia atau koneksi internet terputus.";
+      }
+    });
+  }catch(_){
+    $("writingStatus").className="writing-status writing-error";
+    $("writingStatus").textContent="Tutor cara tulis memerlukan koneksi internet saat pertama kali dibuka.";
+  }
+}
+function openWritingTutor(word){
+  writingChars=kanjiCharacters(word.k);
+  if(!writingChars.length)return;
+  writingIndex=0;
+  $("writingWord").textContent=word.k;
+  $("writingReading").textContent=`${word.h} • ${word.m}`;
+  $("writingModal").classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  renderWritingCharacter();
+}
+function closeWritingTutor(){
+  writingAnimationToken++;
+  writingSwitching=false;
+  try{writingWriter?.pauseAnimation?.()}catch(_){}
+  writingWriter=null;
+  $("writingCanvas").innerHTML="";
+  $("writingModal").classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+$("vocabWritingOpen").onclick=()=>{if(vocabPreviewWord){closeVocabPreview();openWritingTutor(vocabPreviewWord)}};
+$("writingClose").onclick=closeWritingTutor;
+$("writingModal").addEventListener("click",event=>{if(event.target===$("writingModal"))closeWritingTutor()});
+$("writingReplay").onclick=()=>renderWritingCharacter();
+function moveWritingCharacter(direction){
+  if(writingSwitching)return;
+  const nextIndex=writingIndex+direction;
+  if(nextIndex<0||nextIndex>=writingChars.length)return;
+  writingSwitching=true;
+  const canvas=$("writingCanvas");
+  canvas.classList.add("switching");
+  setTimeout(()=>{writingIndex=nextIndex;writingSwitching=false;canvas.classList.remove("switching");renderWritingCharacter()},150);
+}
+$("writingPrev").onclick=()=>moveWritingCharacter(-1);
+$("writingNext").onclick=()=>moveWritingCharacter(1);
+let writingPointerStartX=null;
+$("writingCanvas").addEventListener("pointerdown",event=>{writingPointerStartX=event.clientX;$("writingCanvas").classList.add("dragging");$("writingCanvas").setPointerCapture?.(event.pointerId)});
+$("writingCanvas").addEventListener("pointerup",event=>{if(writingPointerStartX===null)return;const distance=event.clientX-writingPointerStartX;writingPointerStartX=null;$("writingCanvas").classList.remove("dragging");if(Math.abs(distance)>=45)moveWritingCharacter(distance<0?1:-1)});
+$("writingCanvas").addEventListener("pointercancel",()=>{writingPointerStartX=null;$("writingCanvas").classList.remove("dragging")});
+$("toWritingStudy").onclick=()=>{const word=currentDeck[index];if(word&&kanjiCharacters(word.k).length)openWritingTutor(word)};
+document.addEventListener("keydown",event=>{if($("writingModal").classList.contains("hidden"))return;if(event.key==="Escape"){event.preventDefault();closeWritingTutor()}else if(event.key==="ArrowRight"){event.preventDefault();moveWritingCharacter(1)}else if(event.key==="ArrowLeft"){event.preventDefault();moveWritingCharacter(-1)}});
+
 function renderTable(){
   const q=$("search").value.trim().toLowerCase();
   const learned=knownSet();
@@ -1569,7 +1742,12 @@ function renderTable(){
   rows.forEach(({v,localIndex},i)=>{
     const tr=document.createElement("tr");
     tr.className=learned.has(v.k)?"learned-row":"unlearned-row";
+    tr.tabIndex=0;
+    tr.setAttribute("role","button");
+    tr.setAttribute("aria-label",`Buka kartu ${v.k}, ${v.h}, ${v.m}`);
     tr.innerHTML=`<td data-col="number">${i+1}</td><td data-col="kanji" class="td-kanji">${v.k}</td><td data-col="hiragana">${v.h}</td><td data-col="meaning">${v.m}</td>`;
+    tr.onclick=()=>openVocabPreview(v,tr);
+    tr.onkeydown=event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openVocabPreview(v,tr)}};
     tb.appendChild(tr);
   });
   applyColumnVisibility();
@@ -1602,20 +1780,28 @@ function openFlash(start=0){
 function renderFlash(){
   if(!currentDeck.length){
     $("kanji").textContent="Semua sudah hafal!";
+    $("vocabExampleJapanese").textContent="";
+    $("vocabExampleReading").textContent="";
     $("hira").textContent="Kerja bagus";
     $("meaning").textContent="Semua kosakata pada pilihan ini sudah hafal 🎉";
+    $("vocabExampleMeaning").textContent="";
     $("counter").textContent="0 / 0";
     $("known").textContent=knownSet().size;
     $("bar").style.width="100%";
     $("card").classList.add("flipped");
     ["prev","next","shuffle","know","again"].forEach(id=>$(id).disabled=true);
+    $("toWritingStudy").classList.add("hidden");
     return;
   }
   ["prev","next","shuffle","know","again"].forEach(id=>$(id).disabled=false);
   const v=currentDeck[index], s=knownSet();
+  $("toWritingStudy").classList.toggle("hidden",kanjiCharacters(v.k).length===0);
   $("kanji").textContent=v.k;
+  $("vocabExampleJapanese").textContent=v.ex||v.read||"";
+  $("vocabExampleReading").textContent=v.exr||v.readr||"";
   $("hira").textContent=v.h;
   $("meaning").textContent=v.m;
+  $("vocabExampleMeaning").textContent=v.exm||v.readm||"";
   $("counter").textContent=`${index+1} / ${currentDeck.length}`;
   $("known").textContent=s.size;
   $("bar").style.width=`${((index+1)/currentDeck.length)*100}%`;
