@@ -925,6 +925,20 @@ body::before{background-image:linear-gradient(rgba(8,24,58,.08),rgba(8,24,58,.08
 .overview-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:12px}.overview-card{display:grid;grid-template-columns:46px minmax(0,1fr);align-items:center;gap:11px;min-height:112px;padding:15px;border:1.5px solid #ccdaed;border-radius:17px;background:rgba(255,255,255,.9);box-shadow:0 7px 18px rgba(16,47,104,.07)}.overview-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;color:#fff;font-size:21px;font-weight:900;box-shadow:0 8px 18px rgba(16,47,104,.18)}.overview-vocab .overview-icon{background:linear-gradient(135deg,#3470ee,#1746b2)}.overview-grammar .overview-icon{background:linear-gradient(135deg,#ef5260,#b81f30)}.overview-focus .overview-icon{background:linear-gradient(135deg,#f2ae26,#d47a0c)}.overview-copy{min-width:0}.overview-copy span{display:block;margin-bottom:4px;color:#6a7a91;font-size:12px;font-weight:750}.overview-copy strong{display:block;color:#173b7a;font-size:17px;line-height:1.25}.overview-progress{grid-column:1/-1;height:7px;overflow:hidden;border-radius:999px;background:#e4ebf5}.overview-progress i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#2457d6,#df3444);transition:width .45s ease}.overview-focus{grid-template-columns:46px minmax(0,1fr)}.overview-focus small{grid-column:1/-1;color:#718097;font-size:12px;line-height:1.4}
 @media(max-width:900px){.overview-grid{grid-template-columns:1fr 1fr}.overview-focus{grid-column:1/-1}}
 @media(max-width:640px){.learning-overview{margin-top:16px;padding:15px;border-radius:19px}.learning-overview-head{align-items:flex-start}.overview-badge{font-size:10px}.overview-grid{grid-template-columns:1fr}.overview-focus{grid-column:auto}.overview-card{min-height:100px}.learning-overview::after{font-size:105px}}
+@media(max-width:900px),(hover:none) and (pointer:coarse){
+  body{background-attachment:scroll !important}
+  body::before{display:none !important}
+  #dashboard,.topbar,.subpage-head,.feature-menu-panel,.material-meta{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+  #dashboard{background:rgba(255,255,255,.94) !important;box-shadow:0 10px 28px rgba(12,34,78,.16),inset 0 3px 0 #2457d6,inset 0 -3px 0 #df3444 !important}
+  .material-card,.material-vocab,.material-n3{box-shadow:0 9px 22px rgba(12,34,78,.18) !important;transition:none !important}
+  .learning-overview,.overview-card,.deck,.grammar-card,.table-wrap,.quiz-panel{box-shadow:0 6px 16px rgba(12,34,78,.1) !important}
+  .scene .face{box-shadow:0 10px 26px rgba(12,34,78,.14),inset 0 4px 0 #2457d6 !important}
+  .scene .face.back{box-shadow:0 10px 26px rgba(92,22,38,.13),inset 0 4px 0 #d32f3d !important}
+  button,.deck,.grammar-card,.material-card,.overview-progress i{transition:none !important}
+  button:hover,.deck:hover,.grammar-card:hover,.material-card:hover,.full-card:hover{transform:none !important;filter:none !important}
+  #deckGrid .deck,#grammarGroupGrid .deck,.grammar-list .grammar-card{content-visibility:auto;contain-intrinsic-size:auto 92px}
+  #vocabTable tbody tr{content-visibility:auto;contain-intrinsic-size:auto 64px}
+}
 </style>
 </head>
 <body>
